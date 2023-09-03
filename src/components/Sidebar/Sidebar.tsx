@@ -2,7 +2,7 @@ import './Sidebar.scss'
 
 const Sidebar = () => {
   return (
-    <aside>
+    <aside className='Sidebar'>
       <p>Newsletter</p>
       <p>Recipients' emails</p>
     </aside>

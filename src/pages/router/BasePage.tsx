@@ -1,10 +1,17 @@
+import './base.scss';
+import { Outlet } from "react-router-dom";
 import Sidebar from "@components/Sidebar/Sidebar";
 
 const BasePage = () => {
   return (
-    <div>
+    <div className='BasePage'>
       <Sidebar />
-      <h1>BasePage</h1>
+
+      <main>
+        <h1>BasePage</h1>
+
+        <Outlet />
+      </main>
     </div>
   );
 }

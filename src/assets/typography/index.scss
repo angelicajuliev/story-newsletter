@@ -1,0 +1,28 @@
+@font-face {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 600;
+  src: url('./Rubik-Regular.ttf');
+  unicode-range: U+000-5FF;
+}
+
+@font-face {
+  font-family: Rubik-Bold;
+  src: url('./Rubik-Bold.ttf');
+  font-style: bold;
+  font-weight: 800;
+  unicode-range: U+000-5FF;
+}
+
+@font-face {
+  font-family: Rubik-Italic;
+  src: url('./Rubik-Italic.ttf');
+}
+
+@font-face {
+  font-family: Rubik-Medium;
+  font-style: normal;
+  font-weight: 300;
+  unicode-range: U+000-5FF;
+  src: url('./Rubik-Medium.ttf');
+}

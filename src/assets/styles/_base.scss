@@ -1,0 +1,99 @@
+@import './tokens';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+}
+
+html,
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: 16px;
+  margin: 0;
+}
+
+body {
+  color: $text-primary-color;
+  font-family: $font-family-regular;
+  line-height: $line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  line-height: $line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-title;
+}
+
+h1 {
+  font-size: $h1-font-size;
+  font-family: $font-family-bold;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+h4 {
+  font-size: $h4-font-size;
+}
+
+h5 {
+  font-size: $h5-font-size;
+}
+
+h6 {
+  font-size: $h6-font-size;
+}
+
+small {
+  font-size: $small-font-size;
+}
+
+p,
+a {
+  font-size: $p-font-size;
+  font-family: $font-family-regular;
+}
+
+label {
+  font-size: $label-font-size;
+}
+
+p,
+a {
+  padding: calc($padding / 2) 0 $padding;
+}
+
+b {
+  font-family: $font-family-bold;
+}
+
+a {
+  color: inherit;
+}
