@@ -7,6 +7,7 @@ import {
 import { newsletterApi } from '@data/api'
 import {
   FETCH_NEWSLETTERS,
+  FETCH_NEWSLETTERS_ERROR,
   FETCH_NEWSLETTERS_SUCCESS,
 } from '@data/state/ActionConstants'
 
@@ -18,13 +19,20 @@ const NewsLetterListC = () => {
     const fetchData = async () => {
       dispatch({ type: FETCH_NEWSLETTERS })
 
-      const response = await newsletterApi.list()
-      const newsletters = response.data
-
-      dispatch({
-        type: FETCH_NEWSLETTERS_SUCCESS,
-        payload: newsletters,
-      })
+      try {
+        const response = await newsletterApi.list()
+        const newsletters = response?.data
+  
+        dispatch({
+          type: FETCH_NEWSLETTERS_SUCCESS,
+          payload: newsletters,
+        })
+      } catch (error) {
+        dispatch({
+          type: FETCH_NEWSLETTERS_ERROR,
+          payload: 'Error getting the newsletter list',
+        })
+      }
     }
 
     fetchData()

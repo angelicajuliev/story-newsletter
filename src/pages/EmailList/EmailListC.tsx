@@ -10,6 +10,7 @@ import {
   CREATE_EMAIL,
   CREATE_EMAIL_SUCCESS,
   FETCH_EMAILS,
+  FETCH_EMAILS_ERROR,
   FETCH_EMAILS_SUCCESS,
 } from '@data/state/ActionConstants'
 
@@ -31,10 +32,14 @@ const EmailListC = () => {
   
   const fetchEmails = async () => {
     dispatch({ type: FETCH_EMAILS })
-    const response = await emailApi.list()
-    const emails = response.data
-
-    dispatch({ type: FETCH_EMAILS_SUCCESS, payload: emails })
+    try {
+      const response = await emailApi.list()
+      const emails = response?.data
+  
+      dispatch({ type: FETCH_EMAILS_SUCCESS, payload: emails })
+    } catch (error) {
+      dispatch({ type: FETCH_EMAILS_ERROR, payload: 'Error getting the email list' })
+    }
   }
 
   const handleCreateNewEmail = () => {
