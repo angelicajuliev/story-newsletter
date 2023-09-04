@@ -1,0 +1,30 @@
+@import 'src/assets/styles/tokens';
+
+.Header {
+  background-color: $bg-primary-color;
+  display: flex;
+  gap: $padding;
+  padding: calc($padding * 2);
+  align-items: center;
+  position: sticky;
+  height: 6rem;
+
+  img {
+    width: 8rem;
+  }
+
+  nav {
+    display: flex;
+    gap: $padding;
+
+    li {
+      list-style: none;
+      margin-left: $padding;
+      
+      a {
+        font-size: $h5-font-size;
+        text-decoration: none;
+      }
+    }
+  }
+}

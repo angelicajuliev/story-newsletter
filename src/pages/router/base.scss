@@ -1,21 +1,12 @@
 @import 'src/assets/styles/tokens';
 
 .BasePage {
-  display: grid;
-  gap: $padding;
-  grid-template-columns: 22rem auto;
-  grid-template-rows: 1fr;
-  grid-template-areas:
-    "nav    content"
-    "nav    content";
-
-  .Sidebar {
-    grid-area: nav;
-    height: 100vh;
-  }
+  display: flex;
+  flex-direction: column;
 
   main {
     grid-area: content;
     overflow: auto;
+    padding: $padding;
   }
 }
