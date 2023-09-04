@@ -1,0 +1,22 @@
+@import 'src/assets/styles/tokens';
+
+.Input {
+  display: flex;
+  flex-direction: column;
+  gap: calc($margin / 2);
+
+  label {
+    text-transform: capitalize;
+  }
+
+  input {
+    border: 1px solid $border-secondary-color;
+    border-radius: $border-radius;
+    padding: calc($padding / 2);
+    width: 100%;
+    
+    &[type='file'] {
+      display: none;
+    }
+  }
+}

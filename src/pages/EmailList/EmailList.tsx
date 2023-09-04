@@ -1,45 +1,61 @@
-import './EmailList.scss';
-import { useEffect } from 'react';
-import { MdOutlineDeleteOutline } from 'react-icons/md';
+import './EmailList.scss'
+import { FunctionComponent } from 'react'
+import { MdAdd, MdOutlineDeleteOutline } from 'react-icons/md'
 
-import Button from '@components/Button/Button';
-import { emailApi } from '@data/api';
-import { useEmailDispatch, useEmailState } from '@data/state/EmailContext';
-import { FETCH_EMAILS, FETCH_EMAILS_SUCCESS } from '@data/state/ActionConstants';
+import Button from '@components/Button/Button'
+import { Email } from '@data/models/Email'
+import Input from '@components/Input/Input'
 
-const EmailList = () => {
-  const state = useEmailState();
-  const dispatch = useEmailDispatch();
-
-  useEffect(() => {
-    const fetchEmails = async () => {
-      dispatch({ type: FETCH_EMAILS });
-      const response = await emailApi.list();
-      const emails = response.data;
-
-      dispatch({ type: FETCH_EMAILS_SUCCESS, payload: emails });
-    };
-
-    fetchEmails();
-  }, []);
-
+type EmailListProps = {
+  emailList?: Email[]
+  showNewEmailForm: boolean
+  handleOnSubmitNewEmail: () => void
+  handleCreateNewEmail: () => void
+  control: any
+}
+const EmailList: FunctionComponent<EmailListProps> = ({
+  emailList,
+  showNewEmailForm,
+  handleOnSubmitNewEmail,
+  handleCreateNewEmail,
+  control,
+}) => {
   return (
     <div className='EmailList'>
-      <h1>Email List</h1>
-      
+      <section className='EmailList__header'>
+        <h1>Email List</h1>
+
+        <div className='actions'>
+          <Input name='emailListFile' control={control} variant='file' />
+
+          <Button variant='icon' title="Add a new email" onClick={handleCreateNewEmail}>
+            <MdAdd />
+          </Button>
+        </div>
+      </section>
+
       <ul>
-        {state?.items?.map((email) => (
+        {showNewEmailForm && (
+          <li key='newEmailForm'>
+            <form onSubmit={handleOnSubmitNewEmail}>
+              <Input name='email' control={control} />
+              <Button variant='primary'>Save</Button>
+            </form>
+          </li>
+        )}
+
+        {emailList?.map((email) => (
           <li key={email.id}>
             <span>{email.email}</span>
 
-            <Button variant='icon' title="Unsubscribe the email">
+            <Button variant='icon' title='Unsubscribe the email'>
               <MdOutlineDeleteOutline />
             </Button>
           </li>
         ))}
       </ul>
     </div>
-  );
+  )
 }
 
-export default EmailList;
+export default EmailList

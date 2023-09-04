@@ -1,6 +1,18 @@
 @import 'src/assets/styles/tokens';
 
 .EmailList {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $padding;
+
+    .actions {
+      display: flex;
+      gap: $margin;
+    }
+  }
+
   ul {
     list-style: none;
     padding: 0;
@@ -15,6 +27,17 @@
       &:nth-child(odd) {
         background-color: $bg-primary-color;
         border-radius: 10px;
+      }
+    }
+
+    form {
+      display: flex;
+      align-items: flex-end;
+      gap: $margin;
+      flex: 1;
+
+      .Input {
+        width: 15rem;
       }
     }
   }

@@ -1,11 +1,11 @@
 import { FunctionComponent } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import ErrorPage from '@pages/ErrorPage/ErrorPage'
-import EmailList from '@pages/EmailList/EmailList'
 import BasePage from './BasePage'
+import ErrorPage from '@pages/ErrorPage/ErrorPage'
 import NewsLetterList from '@pages/NewsLetterList/NewsLetterList'
 import CreateNewsLetter from '@pages/CreateNewsLetter/CreateNewsLetter'
+import EmailListC from '@pages/EmailList/EmailListC'
 
 const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/emails',
-        element: <EmailList />,
+        element: <EmailListC />,
       },
       {
         path: '/newsletters',

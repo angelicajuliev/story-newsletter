@@ -4,7 +4,7 @@ import { FunctionComponent, PropsWithChildren } from "react";
 type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'icon';
   title?: string;
-} & PropsWithChildren
+} & PropsWithChildren & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button: FunctionComponent<ButtonProps> = ({ children, variant, ...props }) => {
   return (

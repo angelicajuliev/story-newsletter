@@ -5,6 +5,7 @@ import {
   FETCH_EMAILS,
   FETCH_EMAILS_SUCCESS,
   FETCH_EMAILS_ERROR,
+  CREATE_EMAIL_SUCCESS,
  } from "./ActionConstants";
 
 const initialState = {
@@ -32,6 +33,13 @@ const emailReducer = (state: any, action: any) => {
       return {
         ...state,
         items: action.payload,
+        loading: false,
+      };
+    case CREATE_EMAIL_SUCCESS:
+      const previousItems = state.items;
+      return {
+        ...state,
+        items: [...previousItems, action.payload],
         loading: false,
       };
     case FETCH_EMAILS_ERROR:
