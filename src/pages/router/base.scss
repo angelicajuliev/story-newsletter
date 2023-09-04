@@ -8,5 +8,8 @@
     grid-area: content;
     overflow: auto;
     padding: $padding;
+    margin: $margin;
+    background-color: #fff;
+    border-radius: $border-radius;
   }
 }

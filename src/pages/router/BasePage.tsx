@@ -8,8 +8,6 @@ const BasePage = () => {
       <Header />
 
       <main>
-        <h1>BasePage</h1>
-
         <Outlet />
       </main>
     </div>

@@ -1,0 +1,24 @@
+@import "src/assets/styles/tokens";
+
+.Button {
+  background-color: $bg-secondary-color;
+  color: $text-secondary-color;
+  border-radius: $button-border-radius;
+  border: none;
+  padding: $padding;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &.icon {
+    background-color: $bg-primary-color;
+    color: $text-primary-color;
+  }
+}

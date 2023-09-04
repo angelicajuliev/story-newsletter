@@ -1,7 +1,6 @@
 @import 'src/assets/styles/tokens';
 
 .Header {
-  background-color: $bg-primary-color;
   display: flex;
   gap: $padding;
   padding: calc($padding * 2);
