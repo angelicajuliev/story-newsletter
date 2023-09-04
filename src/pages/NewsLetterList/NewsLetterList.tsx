@@ -10,6 +10,8 @@ type NewsLetterListProps = {
 const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
   newsletters = [],
 }) => {
+  console.log("🚀 ~ file: NewsLetterList.tsx:12 ~ newsletters:", newsletters)
+  
   return (
     <div className='Newsletter'>
       <section className='EmailList__header'>
@@ -34,20 +36,26 @@ const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
           <b>Actions</b>
         </li>
 
-        {newsletters.map((newsletter) => (
-          <li key={newsletter.id}>
-            <p className='subject'>{newsletter.subject}</p>
-            <p className='status'>{newsletter.status}</p>
-            <p>{newsletter.date}</p>
-            <div className='actions'>
-              {newsletter.status === 'scheduled' && (
-                <Button variant='icon' title='Cancel the scheduled email'>
-                  <MdFreeCancellation />
-                </Button>
-              )}
-            </div>
-          </li>
-        ))}
+        {newsletters.map((newsletter) => {
+          console.log(
+            '🚀 ~ file: NewsLetterList.tsx:53 ~ {newsletters.map ~ newsletter:',
+            newsletter
+          )
+          return (
+            <li key={newsletter.id ?? newsletter.subject}>
+              <p className='subject'>{newsletter.subject}</p>
+              <p className='status'>{newsletter.status}</p>
+              <p>{newsletter.date}</p>
+              <div className='actions'>
+                {newsletter.status === 'scheduled' && (
+                  <Button variant='icon' title='Cancel the scheduled email'>
+                    <MdFreeCancellation />
+                  </Button>
+                )}
+              </div>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

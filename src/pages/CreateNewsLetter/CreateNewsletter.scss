@@ -1,0 +1,20 @@
+@import "src/assets/styles/tokens";
+
+.CreateNewsletter {
+  display: flex;
+  flex-direction: column;
+  gap: calc($margin / 2);
+
+  .inputs-header {
+    display: flex;
+    gap: calc($margin / 2);
+
+    .Input {
+      flex: 1;
+    }
+  }
+
+  .Button {
+    align-self: center;
+  }
+}

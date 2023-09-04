@@ -26,9 +26,18 @@ const EmailList: FunctionComponent<EmailListProps> = ({
         <h1>Email List</h1>
 
         <div className='actions'>
-          <Input name='emailListFile' control={control} variant='file' />
+          <Input
+            name='emailListFile'
+            control={control}
+            type='file'
+            label='Upload multiple emails'
+          />
 
-          <Button variant='icon' title="Add a new email" onClick={handleCreateNewEmail}>
+          <Button
+            variant='icon'
+            title='Add a new email'
+            onClick={handleCreateNewEmail}
+          >
             <MdAdd />
           </Button>
         </div>

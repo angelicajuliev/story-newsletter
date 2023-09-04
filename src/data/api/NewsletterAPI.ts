@@ -3,8 +3,12 @@ import { Newsletter } from "@data/models/Newsletter";
 import { API } from "./APIClass";
 
 class NewsletterAPI extends API {
-  public async list(): Promise<AxiosResponse<Newsletter[]>> {
+  public list(): Promise<AxiosResponse<Newsletter[]>> {
     return this.http.get('/newsletters');
+  }
+
+  public create(newsletter: Newsletter): Promise<AxiosResponse<Newsletter>> {
+    return this.http.post('/newsletters', newsletter);
   }
 }
 

@@ -3,9 +3,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import BasePage from './BasePage'
 import ErrorPage from '@pages/ErrorPage/ErrorPage'
-import CreateNewsLetter from '@pages/CreateNewsLetter/CreateNewsLetter'
 import EmailListC from '@pages/EmailList/EmailListC'
 import NewsLetterListC from '@pages/NewsLetterList/NewsLetterListC'
+import CreateNewsletterC from '@pages/CreateNewsletter/CreateNewsletterC'
 
 const router = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/newsletters/create',
-        element: <CreateNewsLetter />,
+        element: <CreateNewsletterC />,
       }
     ],
   },

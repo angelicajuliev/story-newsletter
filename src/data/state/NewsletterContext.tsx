@@ -1,6 +1,8 @@
 import { Newsletter } from '@data/models/Newsletter'
 import { createContext, useReducer, useContext } from 'react'
+
 import {
+  CREATE_NEWSLETTER_SUCCESS,
   FETCH_NEWSLETTERS,
   FETCH_NEWSLETTERS_ERROR,
   FETCH_NEWSLETTERS_SUCCESS,
@@ -20,12 +22,23 @@ const NewsletterContext = createContext<NewsletterContextType>(initialState)
 const NewsletterDispatchContext = createContext<(values: any) => void>(() => {})
 
 const newsletterReducer = (state: NewsletterContextType, action: any) => {
+  const currentItems = state.items
   switch (action.type) {
     case FETCH_NEWSLETTERS:
       return { ...state, loading: true }
 
     case FETCH_NEWSLETTERS_SUCCESS:
-      return { ...state, items: action.payload, loading: false }
+      return {
+        ...state,
+        items: [...currentItems, ...action.payload],
+        loading: false,
+      }
+    case CREATE_NEWSLETTER_SUCCESS:
+      return {
+        ...state,
+        items: [...currentItems, action.payload],
+        loading: false,
+      }
 
     case FETCH_NEWSLETTERS_ERROR:
       return { ...state, error: action.payload, loading: false }

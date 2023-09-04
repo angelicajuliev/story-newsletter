@@ -1,16 +1,18 @@
-import Button from '@components/Button/Button'
 import './Input.scss'
 import { FunctionComponent, useRef } from 'react'
 import { UseControllerProps, useController } from 'react-hook-form'
 import { MdOutlineFileUpload } from 'react-icons/md'
+import DatePicker from 'react-date-picker';
+import Button from '@components/Button/Button'
 
 type InputProps = {
-  variant?: 'file' | 'text'
+  type?: 'file' | 'date' | 'text'
+  label?: string
 } & UseControllerProps<any> &
   React.InputHTMLAttributes<HTMLInputElement>
 
 const Input: FunctionComponent<InputProps> = (props) => {
-  const { variant } = props
+  const { type } = props
   const { field, fieldState } = useController(props)
   const inputRef = useRef<any>(null)
 
@@ -18,27 +20,46 @@ const Input: FunctionComponent<InputProps> = (props) => {
     inputRef?.current?.click()
   }
 
-  if (variant === 'file') {
-    return (
-      <div className='Input'>
-        <input {...field} type='file' ref={inputRef} />
-        <Button
-          variant='icon'
-          title='Upload multiple emails'
-          onClick={handleButtonFileClick}
-        >
-          <MdOutlineFileUpload />
-        </Button>
-      </div>
-    )
-  }
+  switch (type) {
+    case 'file':
+      return (
+        <div className='Input'>
+          <input {...field} type='file' ref={inputRef} />
+          <Button
+            variant='icon'
+            title={props.label || 'Upload file'}
+            onClick={handleButtonFileClick}
+          >
+            <MdOutlineFileUpload />
+          </Button>
+        </div>
+      )
 
-  return (
-    <div className={`Input ${fieldState}`}>
-      <label>{props.name}</label>
-      <input {...field} />
-    </div>
-  )
+    case 'date':
+      return (
+        <div className={`Input ${fieldState}`}>
+          <label>{props.label || props.name}</label>
+          <DatePicker
+            dayAriaLabel="Day"
+            monthAriaLabel="Month"
+            nativeInputAriaLabel="Date"
+            yearAriaLabel="Year"
+            onChange={field.onChange}
+            value={field.value as string ?? ""}
+            format="dd/MM/yyyy"
+            minDate={new Date()}
+          />
+        </div>
+      )
+
+    default:
+      return (
+        <div className={`Input ${fieldState}`}>
+          <label>{props.label || props.name}</label>
+          <input {...field} />
+        </div>
+      )
+  }
 }
 
 export default Input

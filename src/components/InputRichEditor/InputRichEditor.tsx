@@ -1,26 +1,24 @@
 import { Editor } from '@tinymce/tinymce-react'
 import { FunctionComponent, useRef } from 'react'
+import { UseControllerProps, useController } from 'react-hook-form'
 
 type InputRichEditorProps = {
-  name: string
-  control: any
-}
+  name: string,
+} & UseControllerProps<any>
 
 const InputRichEditor: FunctionComponent<InputRichEditorProps> = (props) => {
   const editorRef = useRef<any>(null)
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent())
-    }
-  }
+  const { field } = useController(props)
 
   return (
     <Editor
-      apiKey={process.env.REACT_APP_TINY_MCE_API_KEY}
+      onEditorChange={(e) => field.onChange(e)}
+      value={field.value as string ?? ''}
+      // apiKey={process.env.REACT_APP_TINY_MCE_API_KEY}
+      apiKey='30t2v7bii9c1gspec4twqiyigi08ux6wgcfpzukg4rpiinzd'
       onInit={(evt: any, editor: any) => (editorRef.current = editor)}
-      initialValue='<p>This is the initial content of the editor.</p>'
       init={{
-        height: 500,
+        height: 300,
         menubar: false,
         plugins: [
           'advlist autolink lists link image charmap print preview anchor',
@@ -33,7 +31,7 @@ const InputRichEditor: FunctionComponent<InputRichEditorProps> = (props) => {
           'alignright alignjustify | bullist numlist outdent indent | ' +
           'removeformat | help',
         content_style:
-          'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+          'body { font-family:Rubik,Arial,sans-serif; font-size:14px }',
       }}
     />
   )
