@@ -5,7 +5,7 @@
   color: $text-secondary-color;
   border-radius: $button-border-radius;
   border: none;
-  padding: $padding;
+  padding: calc($padding / 3) $padding;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
@@ -20,5 +20,9 @@
   &.icon {
     background-color: $bg-primary-color;
     color: $text-primary-color;
+    padding: calc($padding / 3);
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }

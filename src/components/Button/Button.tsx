@@ -1,3 +1,4 @@
+import './Button.scss';
 import { FunctionComponent, PropsWithChildren } from "react";
 
 type ButtonProps = {

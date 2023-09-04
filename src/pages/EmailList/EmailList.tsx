@@ -1,17 +1,25 @@
-import { useEffect, useState } from 'react';
+import './EmailList.scss';
+import { useEffect } from 'react';
 import { MdOutlineDeleteOutline } from 'react-icons/md';
 
-import { Email } from '@data/models/Email';
 import Button from '@components/Button/Button';
+import { emailApi } from '@data/api';
+import { useEmailDispatch, useEmailState } from '@data/state/EmailContext';
+import { FETCH_EMAILS, FETCH_EMAILS_SUCCESS } from '@data/state/ActionConstants';
 
 const EmailList = () => {
-  const [emails, setEmails] = useState<Email[]>([]);
+  const state = useEmailState();
+  const dispatch = useEmailDispatch();
 
   useEffect(() => {
     const fetchEmails = async () => {
-      // const emails = await getEmails();
-      setEmails(emails);
+      dispatch({ type: FETCH_EMAILS });
+      const response = await emailApi.list();
+      const emails = response.data;
+
+      dispatch({ type: FETCH_EMAILS_SUCCESS, payload: emails });
     };
+
     fetchEmails();
   }, []);
 
@@ -20,7 +28,7 @@ const EmailList = () => {
       <h1>Email List</h1>
       
       <ul>
-        {emails.map((email) => (
+        {state?.items?.map((email) => (
           <li key={email.id}>
             <span>{email.email}</span>
 

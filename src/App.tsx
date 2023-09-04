@@ -1,9 +1,12 @@
-import Router from '@pages/router/Router';
+import StateContext from '@data/state/StateContext'
+import Router from '@pages/router/Router'
 
 function App() {
   return (
-    <Router />
-  );
+    <StateContext>
+      <Router />
+    </StateContext>
+  )
 }
 
-export default App;
+export default App

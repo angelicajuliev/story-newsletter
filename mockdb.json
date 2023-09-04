@@ -1,0 +1,75 @@
+{
+  "emails": [
+    {
+      "id": 1,
+      "email": "pcull0@storify.com"
+    },
+    {
+      "id": 2,
+      "email": "nmityashin1@unblog.fr"
+    },
+    {
+      "id": 3,
+      "email": "ablandamore2@vkontakte.ru"
+    },
+    {
+      "id": 4,
+      "email": "dvanderkruis3@msn.com"
+    },
+    {
+      "id": 5,
+      "email": "rstuckley4@t-online.de"
+    },
+    {
+      "id": 6,
+      "email": "kputtrell5@newsvine.com"
+    },
+    {
+      "id": 7,
+      "email": "lleftwich6@qq.com"
+    },
+    {
+      "id": 8,
+      "email": "hgoldstein7@woothemes.com"
+    },
+    {
+      "id": 9,
+      "email": "cpeile8@cam.ac.uk"
+    },
+    {
+      "id": 10,
+      "email": "smassard9@list-manage.com"
+    }
+  ],
+  "newsletters": [{
+    "id": 1,
+    "email": "pcull0@storify.com"
+  }, {
+    "id": 2,
+    "email": "nmityashin1@unblog.fr"
+  }, {
+    "id": 3,
+    "email": "ablandamore2@vkontakte.ru"
+  }, {
+    "id": 4,
+    "email": "dvanderkruis3@msn.com"
+  }, {
+    "id": 5,
+    "email": "rstuckley4@t-online.de"
+  }, {
+    "id": 6,
+    "email": "kputtrell5@newsvine.com"
+  }, {
+    "id": 7,
+    "email": "lleftwich6@qq.com"
+  }, {
+    "id": 8,
+    "email": "hgoldstein7@woothemes.com"
+  }, {
+    "id": 9,
+    "email": "cpeile8@cam.ac.uk"
+  }, {
+    "id": 10,
+    "email": "smassard9@list-manage.com"
+  }]
+}

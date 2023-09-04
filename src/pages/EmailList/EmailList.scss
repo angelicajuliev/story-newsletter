@@ -1,12 +1,21 @@
-.EmailList {
+@import 'src/assets/styles/tokens';
 
+.EmailList {
   ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: $margin 0;
 
     li {
-      border-bottom: 1px solid $border-primary-color;
+      padding: $padding;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &:nth-child(odd) {
+        background-color: $bg-primary-color;
+        border-radius: 10px;
+      }
     }
   }
 }
