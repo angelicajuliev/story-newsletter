@@ -1,4 +1,4 @@
-@import "src/assets/styles/tokens";
+@import 'src/assets/styles/tokens';
 
 .Button {
   background-color: $bg-secondary-color;
@@ -17,12 +17,20 @@
     cursor: not-allowed;
   }
 
-  &.icon {
+  &.icon,
+  &.link-icon {
     background-color: $bg-primary-color;
     color: $text-primary-color;
-    padding: calc($padding / 3);
+    padding: 0;
     font-size: 1.5rem;
     width: 2.5rem;
     height: 2.5rem;
+
+    a {
+      padding: calc($padding / 3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }

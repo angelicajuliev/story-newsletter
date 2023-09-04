@@ -1,45 +1,42 @@
-import { Newsletter } from "@data/models/Newsletter";
-import { createContext, useReducer, useContext } from "react"
+import { Newsletter } from '@data/models/Newsletter'
+import { createContext, useReducer, useContext } from 'react'
+import {
+  FETCH_NEWSLETTERS,
+  FETCH_NEWSLETTERS_ERROR,
+  FETCH_NEWSLETTERS_SUCCESS,
+} from './ActionConstants'
 
 const initialState = {
   items: [],
-  loading: false
-};
+  loading: false,
+}
 
 type NewsletterContextType = {
-  items: Newsletter[];
-  loading?: boolean;
-  error?: string;
-};
-const NewsletterContext = createContext<NewsletterContextType>(initialState);
-const NewsletterDispatchContext = createContext<(values: any) => void>(() => {});
+  items: Newsletter[]
+  loading?: boolean
+  error?: string
+}
+const NewsletterContext = createContext<NewsletterContextType>(initialState)
+const NewsletterDispatchContext = createContext<(values: any) => void>(() => {})
 
 const newsletterReducer = (state: NewsletterContextType, action: any) => {
   switch (action.type) {
-    case 'FETCH_NEWSLETTER':
-      return { ...state,
-        loading: true
-      };
+    case FETCH_NEWSLETTERS:
+      return { ...state, loading: true }
 
-    case 'SAVE_NEWSLETTER':
-      return { ...state,
-        items: action.payload,
-        loading: false
-      };
+    case FETCH_NEWSLETTERS_SUCCESS:
+      return { ...state, items: action.payload, loading: false }
 
-    case 'SET_ERROR':
-      return { ...state,
-        error: action.payload,
-        loading: false
-      };
+    case FETCH_NEWSLETTERS_ERROR:
+      return { ...state, error: action.payload, loading: false }
 
     default:
-      return state;
+      return state
   }
 }
 
 export const NewsletterProvider = ({ children }: any) => {
-  const [state, dispatch] = useReducer(newsletterReducer, initialState);
+  const [state, dispatch] = useReducer(newsletterReducer, initialState)
 
   return (
     <NewsletterContext.Provider value={state}>
@@ -47,13 +44,13 @@ export const NewsletterProvider = ({ children }: any) => {
         {children}
       </NewsletterDispatchContext.Provider>
     </NewsletterContext.Provider>
-  );
+  )
 }
 
 export function useNewsletterState() {
-  return useContext(NewsletterContext);
+  return useContext(NewsletterContext)
 }
 
 export function useNewsletterDispatch() {
-  return useContext(NewsletterDispatchContext);
+  return useContext(NewsletterDispatchContext)
 }

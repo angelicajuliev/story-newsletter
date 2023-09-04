@@ -1,0 +1,43 @@
+@import 'src/assets//styles/tokens';
+
+.Newsletter {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $padding;
+
+    .actions {
+      display: flex;
+      gap: $margin;
+    }
+  }
+  
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: $margin 0;
+
+    li {
+      padding: $padding;
+      display: grid;
+      grid-template-columns: minmax(5rem, 1fr) 5rem 7rem 5rem;
+      align-items: center;
+      gap: $padding;
+
+      &:nth-child(odd) {
+        background-color: $bg-primary-color;
+        border-radius: 10px;
+      }
+
+      .subject {
+        width: 100%;
+        word-wrap: break-word;
+      }
+
+      .status {
+        text-transform: capitalize;
+      }
+    }
+  }
+}
