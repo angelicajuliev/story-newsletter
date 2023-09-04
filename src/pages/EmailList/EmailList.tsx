@@ -11,6 +11,7 @@ type EmailListProps = {
   showNewEmailForm: boolean
   handleOnSubmitNewEmail: () => void
   handleCreateNewEmail: () => void
+  handleDeleteEmail: (email: Email) => void
   control: any
 }
 const EmailList: FunctionComponent<EmailListProps> = ({
@@ -18,6 +19,7 @@ const EmailList: FunctionComponent<EmailListProps> = ({
   showNewEmailForm,
   handleOnSubmitNewEmail,
   handleCreateNewEmail,
+  handleDeleteEmail,
   control,
 }) => {
   return (
@@ -57,7 +59,11 @@ const EmailList: FunctionComponent<EmailListProps> = ({
           <li key={email.id}>
             <span>{email.email}</span>
 
-            <Button variant='icon' title='Unsubscribe the email'>
+            <Button
+              variant='icon'
+              title='Unsubscribe the email'
+              onClick={() => handleDeleteEmail(email)}
+            >
               <MdOutlineDeleteOutline />
             </Button>
           </li>

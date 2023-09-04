@@ -7,7 +7,11 @@ export default class EmailAPI extends API {
     return this.http.get('/emails')
   }
 
-  create({ email }: { email: string }): Promise<AxiosResponse<Email>> {
-    return this.http.post('/emails', email)
+  create(data: { email: string }): Promise<AxiosResponse<Email>> {
+    return this.http.post('/emails', data)
+  }
+
+  unsubscribe({ id }: { id: number }): Promise<AxiosResponse> {
+    return this.http.delete(`/emails/${id}`)
   }
 }

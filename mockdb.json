@@ -9,10 +9,6 @@
       "email": "nmityashin1@unblog.fr"
     },
     {
-      "id": 3,
-      "email": "ablandamore2@vkontakte.ru"
-    },
-    {
       "id": 4,
       "email": "dvanderkruis3@msn.com"
     },
@@ -33,12 +29,12 @@
       "email": "hgoldstein7@woothemes.com"
     },
     {
-      "id": 9,
-      "email": "cpeile8@cam.ac.uk"
-    },
-    {
       "id": 10,
       "email": "smassard9@list-manage.com"
+    },
+    {
+      "email": "julieth15gomez@gmai.com",
+      "id": 11
     }
   ],
   "newsletters": [
@@ -111,6 +107,18 @@
       "date": "8/25/2023",
       "content": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
       "status": "canceled"
+    },
+    {
+      "date": "2023-09-08T05:00:00.000Z",
+      "subject": "ESTO ES EL NUEVO",
+      "content": "<p>Algooooo</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>",
+      "id": 11
+    },
+    {
+      "date": "2023-09-15T05:00:00.000Z",
+      "subject": "Algooo",
+      "content": "<p>Esyo es un test</p>",
+      "id": 12
     }
   ]
 }

@@ -1,12 +1,7 @@
 @import 'src/assets/styles/tokens';
 
 .BasePage {
-  display: flex;
-  flex-direction: column;
-
   main {
-    grid-area: content;
-    overflow: auto;
     padding: $padding;
     margin: $margin;
     background-color: #fff;

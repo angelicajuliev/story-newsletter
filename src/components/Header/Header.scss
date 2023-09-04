@@ -3,10 +3,16 @@
 .Header {
   display: flex;
   gap: $padding;
-  padding: calc($padding * 2);
+  padding: $padding;
   align-items: center;
   position: sticky;
+  background-color: $bg-primary-color;
+  top: 0;
   height: 6rem;
+  
+  a {
+    padding: 0;
+  }
 
   img {
     width: 8rem;

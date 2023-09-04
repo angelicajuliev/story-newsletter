@@ -21,6 +21,7 @@ const CreateNewsletterC = () => {
   })
 
   const onSubmit = (data: NewsLetterForm) => {
+    data.date = new Date(data.date).toISOString()
     newsletterApi.create(data)
     
     dispatch({

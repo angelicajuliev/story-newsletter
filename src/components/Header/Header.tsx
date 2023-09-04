@@ -5,7 +5,9 @@ import Logo from 'src/assets/images/logo.svg'
 const Header = () => {
   return (
     <header className='Header'>
-      <img src={Logo} alt='Stori newsletter logo' />
+      <Link to='/home'>
+        <img src={Logo} alt='Stori newsletter logo' />
+      </Link>
 
       <nav>
         <li>

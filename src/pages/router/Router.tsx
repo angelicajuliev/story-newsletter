@@ -6,6 +6,7 @@ import ErrorPage from '@pages/ErrorPage/ErrorPage'
 import EmailListC from '@pages/EmailList/EmailListC'
 import NewsLetterListC from '@pages/NewsLetterList/NewsLetterListC'
 import CreateNewsletterC from '@pages/CreateNewsletter/CreateNewsletterC'
+import Home from '@pages/Home/Home'
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/home',
-        element: <h1>Home</h1>,
+        element: <Home />,
       },
       {
         path: '/emails',

@@ -1,0 +1,19 @@
+@import 'src/assets/styles/tokens';
+
+.Home {
+  section {
+    display: grid;
+    gap: calc($margin * 2);
+    margin-top: calc($margin * 2);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card {
+    text-align: center;
+  }
+
+  h2 {
+    font-size: $h1-font-size;
+    color: $bg-tertiary-color;
+  }
+}

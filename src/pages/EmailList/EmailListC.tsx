@@ -26,16 +26,16 @@ const EmailListC = () => {
   })
 
   useEffect(() => {
-    const fetchEmails = async () => {
-      dispatch({ type: FETCH_EMAILS })
-      const response = await emailApi.list()
-      const emails = response.data
-
-      dispatch({ type: FETCH_EMAILS_SUCCESS, payload: emails })
-    }
-
     fetchEmails()
   }, [])
+  
+  const fetchEmails = async () => {
+    dispatch({ type: FETCH_EMAILS })
+    const response = await emailApi.list()
+    const emails = response.data
+
+    dispatch({ type: FETCH_EMAILS_SUCCESS, payload: emails })
+  }
 
   const handleCreateNewEmail = () => {
     setShowNewEmailForm(true)
@@ -45,8 +45,7 @@ const EmailListC = () => {
     dispatch({ type: CREATE_EMAIL })
 
     const email: Email = { email: values.email }
-    const response = await emailApi.create(email)
-    const newEmail = response.data
+    await emailApi.create(email)
 
     dispatch({
       type: CREATE_EMAIL_SUCCESS,
@@ -55,12 +54,20 @@ const EmailListC = () => {
     setShowNewEmailForm(false)
   }
 
+  const handleDeleteEmail = async (email: Email) => {
+    if (email.id) {
+      await emailApi.unsubscribe({ id: email.id })
+      fetchEmails()
+    }
+  }
+
   return (
     <EmailList
       emailList={state.items}
       showNewEmailForm={showNewEmailForm}
       handleOnSubmitNewEmail={handleSubmit(handleSubmitNewEmail)}
       handleCreateNewEmail={handleCreateNewEmail}
+      handleDeleteEmail={handleDeleteEmail}
       control={control}
     />
   )

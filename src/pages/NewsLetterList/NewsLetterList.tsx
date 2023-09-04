@@ -10,8 +10,6 @@ type NewsLetterListProps = {
 const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
   newsletters = [],
 }) => {
-  console.log("🚀 ~ file: NewsLetterList.tsx:12 ~ newsletters:", newsletters)
-  
   return (
     <div className='Newsletter'>
       <section className='EmailList__header'>
