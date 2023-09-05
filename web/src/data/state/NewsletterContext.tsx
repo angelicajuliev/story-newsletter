@@ -28,9 +28,10 @@ const newsletterReducer = (state: NewsletterContextType, action: any) => {
       return { ...state, loading: true }
 
     case FETCH_NEWSLETTERS_SUCCESS:
+      const newValues = action.payload ?? []
       return {
         ...state,
-        items: [...currentItems, ...action.payload],
+        items: [...currentItems, ...newValues],
         loading: false,
       }
     case CREATE_NEWSLETTER_SUCCESS:
