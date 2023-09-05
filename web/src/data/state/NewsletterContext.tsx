@@ -1,8 +1,10 @@
-import { Newsletter } from '@data/models/Newsletter'
 import { createContext, useReducer, useContext } from 'react'
+import { Newsletter } from '@data/models/Newsletter'
+import { Category } from '@data/models/Category'
 
 import {
   CREATE_NEWSLETTER_SUCCESS,
+  FETCH_CATEGORIES_SUCCESS,
   FETCH_NEWSLETTERS,
   FETCH_NEWSLETTERS_ERROR,
   FETCH_NEWSLETTERS_SUCCESS,
@@ -15,6 +17,7 @@ const initialState = {
 
 type NewsletterContextType = {
   items: Newsletter[]
+  categories?: Category[]
   loading?: boolean
   error?: string
 }
@@ -28,12 +31,12 @@ const newsletterReducer = (state: NewsletterContextType, action: any) => {
       return { ...state, loading: true }
 
     case FETCH_NEWSLETTERS_SUCCESS:
-      const newValues = action.payload ?? []
       return {
         ...state,
-        items: [...currentItems, ...newValues],
+        items: action.payload ?? [],
         loading: false,
       }
+      
     case CREATE_NEWSLETTER_SUCCESS:
       return {
         ...state,
@@ -43,6 +46,9 @@ const newsletterReducer = (state: NewsletterContextType, action: any) => {
 
     case FETCH_NEWSLETTERS_ERROR:
       return { ...state, error: action.payload, loading: false }
+
+    case FETCH_CATEGORIES_SUCCESS:
+      return { ...state, categories: action.payload }
 
     default:
       return state

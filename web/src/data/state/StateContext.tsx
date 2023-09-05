@@ -1,15 +1,15 @@
 import { FunctionComponent, PropsWithChildren } from "react"
-import { EmailProvider } from "./EmailContext"
+import { RecipientProvider } from "./RecipientContext"
 import { NewsletterProvider } from "./NewsletterContext"
 
 type StateContextProps = PropsWithChildren & {}
 const StateContext:FunctionComponent<StateContextProps> = ({ children }: any) => {
   return (
-    <EmailProvider>
+    <RecipientProvider>
       <NewsletterProvider>
         {children}
       </NewsletterProvider>
-    </EmailProvider>
+    </RecipientProvider>
   )
 }
 

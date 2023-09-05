@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
 import { CONSTANTS } from '@helpers/constants'
+import { changeResponseCase } from '@helpers/changeCase'
 
 export class API {
   public http
@@ -14,6 +15,7 @@ export class API {
     this.http.interceptors.request.use(function (request) {
       const token = localStorage.getItem(CONSTANTS.KEYS_STORAGE.SESSION_TOKEN)
       request.headers.Authorization = `Bearer ${token ?? tokenParam}`
+      request.params = changeResponseCase(request.params)
       return request
     })
   }
@@ -27,7 +29,10 @@ export class API {
 
   private _setupHandleError() {
     this.http.interceptors.response.use(
-      (response) => response,
+      (response) => {
+        response.data = changeResponseCase(response)
+        return response
+      },
       (error: AxiosError | any) => {
         if (error.response?.status === CONSTANTS.RESPONSE_CODES.UNAUTHORIZED) {
           if (error.response.data['detail'].includes('Token')) {

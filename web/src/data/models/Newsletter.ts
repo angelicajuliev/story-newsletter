@@ -1,7 +1,10 @@
+import { Category } from "./Category";
+
 export interface Newsletter {
   id?: number;
   title: string;
-  date: string;
+  scheduledAt: string | Date;
   body?: string;
   status?: string;
+  category?: string | Category;
 }

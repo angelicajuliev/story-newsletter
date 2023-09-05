@@ -6,10 +6,12 @@
   gap: calc($margin / 2);
 
   .inputs-header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: calc($margin / 2);
+    margin-bottom: $margin;
 
-    .Input {
+    .Input, .Select {
       flex: 1;
     }
   }

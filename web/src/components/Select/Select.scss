@@ -1,0 +1,23 @@
+@import "src/assets/styles/tokens";
+
+.Select {
+  display: flex;
+  flex-direction: column;
+  gap: calc($margin / 2);
+
+  label {
+    text-transform: capitalize;
+  }
+
+  select {
+    background-color: #fff;
+    border: 1px solid $border-secondary-color;
+    border-radius: $border-radius;
+    padding: calc($padding / 2);
+    width: 100%;
+
+    option {
+      padding: $padding;
+    }
+  }
+}

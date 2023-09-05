@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import BasePage from './BasePage'
 import ErrorPage from '@pages/ErrorPage/ErrorPage'
-import EmailListC from '@pages/EmailList/EmailListC'
+import RecipientListC from '@pages/RecipientList/RecipientListC'
 import NewsLetterListC from '@pages/NewsLetterList/NewsLetterListC'
 import CreateNewsletterC from '@pages/CreateNewsletter/CreateNewsletterC'
 import Home from '@pages/Home/Home'
@@ -15,12 +15,16 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: '/',
+        element: <Home />,
+      },
+      {
         path: '/home',
         element: <Home />,
       },
       {
-        path: '/emails',
-        element: <EmailListC />,
+        path: '/recipients',
+        element: <RecipientListC />,
       },
       {
         path: '/newsletters',
