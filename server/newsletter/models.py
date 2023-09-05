@@ -1,13 +1,20 @@
 from django.db import models
 from django.utils import timezone
 
-class Email(models.Model):
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+class Recipient(models.Model):
     email = models.EmailField(max_length=254)
     created_at = models.DateTimeField(auto_now_add=True)
+    category_subscription = models.ManyToManyField(Category)
 
     def __str__(self):
         return self.email
-    
+
 class Newsletter(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -23,16 +30,7 @@ class Newsletter(models.Model):
         ],
         default='scheduled',
     )
-    category = models.CharField(
-        max_length=10,
-        choices=[
-            ('general', 'General'),
-            ('news', 'News'),
-            ('events', 'Events'),
-            ('offers', 'Offers'),
-        ],
-        default='general',
-    )
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

@@ -1,11 +1,11 @@
 from rest_framework import routers
-from django.contrib import admin
 from django.urls import include, path
-from newsletter.views import EmailViewSet, NewsletterViewSet
+from newsletter.views import RecipientViewSet, NewsletterViewSet, CategoryViewSet
 
 router = routers.DefaultRouter()
-router.register(r'emails', EmailViewSet)
+router.register(r'recipients', RecipientViewSet)
 router.register(r'newsletters', NewsletterViewSet)
+router.register(r'categories', CategoryViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
