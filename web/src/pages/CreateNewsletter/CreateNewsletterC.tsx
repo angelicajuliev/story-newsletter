@@ -16,7 +16,7 @@ const CreateNewsletterC = () => {
     mode: 'onChange',
     defaultValues: {
       date: today,
-      subject: '',
+      title: '',
     },
   })
 
@@ -39,7 +39,7 @@ const CreateNewsletterC = () => {
 }
 
 type NewsLetterForm = {
-  subject: string
+  title: string
   date: string
   content: string
 }

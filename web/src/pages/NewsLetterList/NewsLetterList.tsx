@@ -28,7 +28,7 @@ const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
 
       <ul className='list'>
         <li className='list-header'>
-          <b>Subject</b>
+          <b>title</b>
           <b>Status</b>
           <b>Date</b>
           <b>Actions</b>
@@ -40,8 +40,8 @@ const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
             newsletter
           )
           return (
-            <li key={newsletter.id ?? newsletter.subject}>
-              <p className='subject'>{newsletter.subject}</p>
+            <li key={newsletter.id ?? newsletter.title}>
+              <p className='title'>{newsletter.title}</p>
               <p className='status'>{newsletter.status}</p>
               <p>{newsletter.date}</p>
               <div className='actions'>

@@ -18,7 +18,7 @@ const CreateNewsletter: FunctionComponent<CreateNewsletterProps> = ({
       <h1>Create a Newsletter</h1>
 
       <div className='inputs-header'>
-        <Input name='subject' control={control} />
+        <Input name='title' control={control} />
 
         <Input
           name='date'

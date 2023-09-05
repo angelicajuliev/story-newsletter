@@ -1,6 +1,6 @@
 export interface Newsletter {
   id?: number;
-  subject: string;
+  title: string;
   date: string;
   body?: string;
   status?: string;
