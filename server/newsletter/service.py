@@ -19,3 +19,12 @@ def send_scheduled_newsletters():
     for newsletter in scheduled_newsletters:
         if newsletter.scheduled_at.date() == timezone.now().date():
             send_newsletter(newsletter)
+
+def unsubscribe_by_email(email):
+    recipient = Recipient.objects.get(email=email)
+    recipient.delete()
+
+def unsubscribe_by_email_and_category(email, category):
+    recipient = Recipient.objects.get(email=email)
+    recipient.category_subscription.remove(category)
+    recipient.save()

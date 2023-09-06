@@ -8,11 +8,13 @@ import { formatDate } from "@helpers/formatDate";
 
 type NewsLetterListProps = {
   newsletters: Newsletter[];
+  sendingEmail: boolean;
   handleSendNewsletter: (newsletterId?: number) => void;
 };
 const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
   newsletters = [],
   handleSendNewsletter,
+  sendingEmail,
 }) => {
   return (
     <div className="Newsletter">
@@ -46,17 +48,26 @@ const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
           return (
             <li key={newsletter.id ?? newsletter.title}>
               <p className="title">{newsletter.title}</p>
-              
+
               <p className="category">{categoryName}</p>
 
               <p className="status">{newsletter.status}</p>
 
-              <p>{ newsletter.status !== "archived" ? formatDate(newsletter.scheduledAt) : ' - '}</p>
+              <p>
+                {newsletter.status !== "archived"
+                  ? formatDate(newsletter.scheduledAt)
+                  : " - "}
+              </p>
 
               <div className="actions">
                 {newsletter.status === "scheduled" && (
                   <>
-                    <Button variant="icon" title="Send the email now" onClick={() => handleSendNewsletter(newsletter.id)}>
+                    <Button
+                      variant="icon"
+                      title="Send the email now"
+                      onClick={() => handleSendNewsletter(newsletter.id)}
+                      disabled={sendingEmail}
+                    >
                       <MdSend />
                     </Button>
 

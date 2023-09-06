@@ -5,6 +5,7 @@ import RecipientUnsubscribe, {
   RecipientUnsubscribeForm,
 } from "./RecipientUnsubscribe";
 import RecipientUnsubscribeSuccess from "./RecipientUnsubscribeSuccess";
+import { recipientApi } from "@data/api";
 
 const getQueryParams = (search: string, queryParamName: string) => {
   const params = new URLSearchParams(search);
@@ -24,9 +25,16 @@ const RecipientUnsubscribeC = () => {
     },
   });
 
-  const onSubmit = (data: RecipientUnsubscribeForm) => {
+  const onSubmit = async (data: RecipientUnsubscribeForm) => {
     console.log(data);
-    setShowSuccessMessage(true);
+    try {
+      await recipientApi.publicUnsubscribe({
+        email: data.email,
+        category: data.category === "all" ? undefined : data.category,
+      });
+
+      setShowSuccessMessage(true);
+    } catch (error) {}
   };
 
   return showSuccessMessage ? (

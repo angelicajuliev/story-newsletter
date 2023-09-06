@@ -2,8 +2,8 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from newsletter.models import Recipient, Newsletter, Category
-from newsletter.serializers import RecipientSerializer, NewsletterSerializer, CategorySerializer, CreateRecipientSerializer, SendNewsletterSerializer, CreateNewsletterSerializer
-from newsletter.service import send_newsletter_by_id
+from newsletter.serializers import RecipientSerializer, NewsletterSerializer, CategorySerializer, CreateRecipientSerializer, SendNewsletterSerializer, CreateNewsletterSerializer, UnsubscribeSerializer
+from newsletter.service import send_newsletter_by_id, unsubscribe_by_email_and_category, unsubscribe_by_email
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -23,6 +23,21 @@ class RecipientViewSet(viewsets.ModelViewSet):
         categories = Category.objects.all()
         obj = serializer.save()
         obj.category_subscription.set(categories)
+    
+    @action(detail=False, methods=['delete'], url_path='unsubscribe')
+    def unsubscribe(self, request):
+        serializer = UnsubscribeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        email = serializer.validated_data['email']
+        category = serializer.validated_data.get('category')
+
+        if category:
+            unsubscribe_by_email_and_category(email, category)
+        else:
+            unsubscribe_by_email(email)
+
+        return Response(status=200)
 
 
 class NewsletterViewSet(viewsets.ModelViewSet):

@@ -1,6 +1,10 @@
-@import 'src/assets/styles/tokens';
+@import "src/assets/styles/tokens";
 
-.RecipientUnsubscribe {
+.RecipientUnsubscribe, .RecipientUnsubscribeSuccess {
+  width: 50%;
+  max-width: 100%;
+  min-width: 20rem;
+
   p {
     padding-top: $padding;
     padding-bottom: calc($padding / 2);
@@ -8,14 +12,8 @@
   }
 
   form {
-    width: 50%;
-    max-width: 100%;
-    min-width: 20rem;
     display: flex;
     flex-direction: column;
     gap: $padding;
   }
-}
-
-.RecipientUnsubscribeSuccess {
 }

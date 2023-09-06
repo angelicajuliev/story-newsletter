@@ -7,6 +7,7 @@ import SelectCategoryC from "@components/SelectCategory/SelectCategoryC";
 
 export type RecipientUnsubscribeForm = {
   email: string;
+  category: string;
 };
 
 type RecipientUnsubscribeProps = {
@@ -22,7 +23,7 @@ const RecipientUnsubscribe: FunctionComponent<RecipientUnsubscribeProps> = ({
       <h1>Unsubscribe from Our Newsletter.</h1>
 
       <p>
-        We're genuinely sorry to see you go. Your presence in our community has
+        <b>We're genuinely sorry to see you go</b>. Your presence in our community has
         meant a lot to us, and it's with a heavy heart that we acknowledge your
         decision to unsubscribe from our newsletter.
       </p>
@@ -34,7 +35,7 @@ const RecipientUnsubscribe: FunctionComponent<RecipientUnsubscribeProps> = ({
       </p>
 
       <form onSubmit={handleSubmit}>
-        <Input name="email" control={control} disabled />
+        <Input name="email" control={control} disabled required />
 
         <SelectCategoryC
           label="Which category would you like to stop receiving"

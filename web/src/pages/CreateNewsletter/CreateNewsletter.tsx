@@ -29,7 +29,7 @@ const CreateNewsletter: FunctionComponent<CreateNewsletterProps> = ({
           required
         />
 
-        <SelectCategoryC name="category" control={control} />
+        <SelectCategoryC control={control} />
       </div>
 
       <InputRichEditor name="content" control={control} required />

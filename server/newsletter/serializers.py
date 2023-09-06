@@ -16,6 +16,10 @@ class CreateRecipientSerializer(serializers.ModelSerializer):
         model = Recipient
         fields = ('email',)
 
+class UnsubscribeSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    category = serializers.CharField(required=False)
+
 class NewsletterSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
 

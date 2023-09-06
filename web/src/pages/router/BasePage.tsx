@@ -1,11 +1,11 @@
 import './base.scss';
 import { Outlet } from "react-router-dom";
-import Header from '@components/Header/Header';
+import HeaderC from '@components/Header/HeaderC';
 
 const BasePage = () => {
   return (
     <div className='BasePage'>
-      <Header />
+      <HeaderC />
 
       <main>
         <Outlet />
