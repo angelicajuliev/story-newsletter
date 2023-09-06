@@ -25,7 +25,6 @@ const NewsletterContext = createContext<NewsletterContextType>(initialState)
 const NewsletterDispatchContext = createContext<(values: any) => void>(() => {})
 
 const newsletterReducer = (state: NewsletterContextType, action: any) => {
-  const currentItems = state.items
   switch (action.type) {
     case FETCH_NEWSLETTERS:
       return { ...state, loading: true }
@@ -40,7 +39,6 @@ const newsletterReducer = (state: NewsletterContextType, action: any) => {
     case CREATE_NEWSLETTER_SUCCESS:
       return {
         ...state,
-        items: [...currentItems, action.payload],
         loading: false,
       }
 

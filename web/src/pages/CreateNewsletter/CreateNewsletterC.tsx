@@ -11,25 +11,31 @@ const CreateNewsletterC = () => {
   const navigate = useNavigate();
   const dispatch = useNewsletterDispatch();
 
-  const { handleSubmit, control, reset } = useForm<NewsLetterForm>({
+  const { handleSubmit, control, reset, setError } = useForm<NewsLetterForm>({
     mode: "onChange",
     defaultValues: {
       scheduledAt: today,
       title: "",
+      category: "",
     },
   });
 
-  const onSubmit = (data: NewsLetterForm) => {
+  const onSubmit = async (data: NewsLetterForm) => {
     data.scheduledAt = new Date(data.scheduledAt).toISOString();
-    newsletterApi.create(data);
 
-    dispatch({
-      type: CREATE_NEWSLETTER_SUCCESS,
-      payload: { ...data, status: "scheduled" },
-    });
-
-    reset();
-    navigate("/newsletters");
+    try {
+      await newsletterApi.create(data);
+  
+      dispatch({
+        type: CREATE_NEWSLETTER_SUCCESS,
+        payload: { ...data, status: "scheduled" },
+      });
+  
+      reset();
+      navigate("/newsletters");
+    } catch (error) {
+      setError("content", { message: "Error creating the newsletter" })
+    }
   };
 
   return (
@@ -44,6 +50,7 @@ type NewsLetterForm = {
   title: string;
   scheduledAt: string;
   content: string;
+  category: string;
 };
 
 export default CreateNewsletterC;

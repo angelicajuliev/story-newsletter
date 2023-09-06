@@ -24,11 +24,9 @@ class NewsletterSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CreateNewsletterSerializer(serializers.ModelSerializer):
-    category = serializers.PrimaryKeyRelatedField(read_only=True, allow_null=True)
-
     class Meta:
         model = Newsletter
-        fields = ('title', 'content', 'category')
+        fields = ('title', 'content', 'category', 'scheduled_at')
 
 class SendNewsletterSerializer(serializers.Serializer):
     """

@@ -7,4 +7,5 @@ export interface Newsletter {
   body?: string;
   status?: string;
   category?: string | Category;
+  categoryId?: number | string;
 }

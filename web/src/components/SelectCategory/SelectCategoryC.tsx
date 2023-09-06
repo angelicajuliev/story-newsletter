@@ -16,6 +16,7 @@ import {
 type SelectCategoryProps = {
   control: any;
   label?: string;
+  name?: string;
   extraOptions?: { label: string; value: string }[];
 };
 const SelectCategoryC: FunctionComponent<SelectCategoryProps> = (props) => {
@@ -49,7 +50,7 @@ const SelectCategoryC: FunctionComponent<SelectCategoryProps> = (props) => {
     const categories = state.categories ?? [];
     const emptyOption = { label: "   ---    ", value: "" };
     const options = categories.map((category) => ({
-      label: category.name,
+      label: category.name ?? '',
       value: category.id.toString(),
     }));
 

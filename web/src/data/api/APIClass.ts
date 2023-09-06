@@ -44,6 +44,7 @@ export class API {
           }
         }
         console.error("Unhandled", error);
+        return Promise.reject(error);
       }
     );
   }

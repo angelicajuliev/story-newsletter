@@ -19,7 +19,7 @@ const RecipientListC = () => {
   const dispatch = useRecipientDispatch()
   const [showNewEmailForm, setShowNewEmailForm] = useState(false)
 
-  const { handleSubmit, control, reset } = useForm<EmailForm>({
+  const { handleSubmit, control, reset, setError } = useForm<EmailForm>({
     mode: 'onChange',
     defaultValues: {
       email: '',
@@ -49,16 +49,20 @@ const RecipientListC = () => {
   const handleOnSubmitNewRecipient = async (values: EmailForm) => {
     dispatch({ type: CREATE_RECIPIENT })
 
-    const recipient: Recipient = { email: values.email }
-    await recipientApi.create(recipient)
-
-    dispatch({
-      type: CREATE_RECIPIENT_SUCCESS,
-      payload: recipient,
-    })
-    
-    setShowNewEmailForm(false)
-    reset()
+    try {
+      const recipient: Recipient = { email: values.email }
+      await recipientApi.create(recipient)
+  
+      dispatch({
+        type: CREATE_RECIPIENT_SUCCESS,
+        payload: recipient,
+      })
+      
+      setShowNewEmailForm(false)
+      reset()
+    } catch (error) {
+      setError('email', { message: 'Error creating the recipient' })
+    }
   }
 
   const handleUnsubscribeRecipient = async (recipient: Recipient) => {
