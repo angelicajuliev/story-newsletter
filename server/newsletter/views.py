@@ -2,6 +2,8 @@ from rest_framework import viewsets, views
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.parsers import FileUploadParser
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 from newsletter.models import Recipient, Newsletter, Category
 from newsletter.serializers import RecipientSerializer, NewsletterSerializer, CategorySerializer, CreateRecipientSerializer, SendNewsletterSerializer, CreateNewsletterSerializer, UnsubscribeSerializer
 from newsletter.services import send_newsletter_by_id, unsubscribe_by_email_and_category, unsubscribe_by_email
@@ -41,6 +43,25 @@ class RecipientViewSet(viewsets.ModelViewSet):
 
         return Response(status=200)
 
+class BulkRecipientViewSet(views.APIView):
+    parser_classes = [FileUploadParser]
+
+    def put(self, request):
+        file_obj = request.data['file']
+        recipients = []
+
+        for line in file_obj:
+            email = line.decode('utf-8').strip()
+            
+            try:
+                validate_email(email)
+                recipient = Recipient(email=email)
+                recipients.append(recipient)
+            except ValidationError as e:
+                pass
+            
+        Recipient.objects.bulk_create(recipients)
+        return Response(status=204)
 
 class NewsletterViewSet(viewsets.ModelViewSet):
     queryset = Newsletter.objects.all()

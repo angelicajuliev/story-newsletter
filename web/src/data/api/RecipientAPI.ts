@@ -16,10 +16,24 @@ export default class RecipientAPI extends API {
   }
 
   unsubscribe({ id }: { id: number}): Promise<AxiosResponse> {
-    return this.http.delete(`/recipients/${id}`);
+    return this.http.delete(`/recipients/${id}/`);
   }
 
   publicUnsubscribe({ email, category }: unsubscribeParams): Promise<AxiosResponse> {
     return this.http.delete(`/recipients/unsubscribe/`, { data: { email, category } });
+  }
+
+  bulkCreate(file: File): Promise<AxiosResponse> {
+    const fileName = file.name;
+    const formData = new FormData();
+    formData.append("file", file);
+    
+
+    return this.http.put(`/recipients/bulk-create/`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Content-Disposition": `attachment; filename=${fileName}`
+      },
+    });
   }
 }

@@ -1,6 +1,5 @@
 from django.utils import timezone
 from newsletter import tasks
-from newsletter.utils import send_email
 from newsletter.models import Newsletter, Recipient
 
 def send_newsletter(newsletter: Newsletter):

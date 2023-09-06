@@ -26,6 +26,7 @@ const CreateNewsletter: FunctionComponent<CreateNewsletterProps> = ({
           control={control}
           type="file"
           label="Attachment newsletter"
+          accept="application/pdf,image/*"
         />
 
         <Input

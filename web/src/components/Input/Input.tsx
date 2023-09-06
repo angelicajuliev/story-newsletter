@@ -9,11 +9,12 @@ type InputProps = {
   type?: "file" | "date" | "text";
   label?: string;
   variant?: "icon" | "input";
+  onChange?: (event: any) => void;
 } & UseControllerProps<any> &
   React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input: FunctionComponent<InputProps> = (props) => {
-  const { type } = props;
+  const { type, onChange } = props;
   const inputRef = useRef<any>(null);
 
   const { field, fieldState } = useController({
@@ -30,11 +31,14 @@ const Input: FunctionComponent<InputProps> = (props) => {
       const fileName = field.value?.name;
       return (
         <div className="Input">
-          {props.label && <label>{props.label}</label>}
+          {props.label && props.variant === 'input' && <label>{props.label}</label>}
           <input
             type="file"
             ref={inputRef}
-            onChange={(e) => field.onChange(e.target.files?.[0])}
+            onChange={(e) => {
+              field.onChange(e.target.files?.[0])
+              onChange?.(e)
+            }}
           />
           <Button
             variant={props.variant || "input"}
