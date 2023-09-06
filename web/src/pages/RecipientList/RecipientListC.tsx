@@ -19,7 +19,7 @@ const RecipientListC = () => {
   const dispatch = useRecipientDispatch()
   const [showNewEmailForm, setShowNewEmailForm] = useState(false)
 
-  const { handleSubmit, control } = useForm<EmailForm>({
+  const { handleSubmit, control, reset } = useForm<EmailForm>({
     mode: 'onChange',
     defaultValues: {
       email: '',
@@ -56,7 +56,9 @@ const RecipientListC = () => {
       type: CREATE_RECIPIENT_SUCCESS,
       payload: recipient,
     })
+    
     setShowNewEmailForm(false)
+    reset()
   }
 
   const handleUnsubscribeRecipient = async (recipient: Recipient) => {

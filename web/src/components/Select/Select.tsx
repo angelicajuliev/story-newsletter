@@ -1,7 +1,7 @@
 import './Select.scss'
 import { UseControllerProps, useController } from "react-hook-form";
 
-type SelectProps = {
+export type SelectProps = {
   label?: string
   options: { label: string; value: string }[]
 } & React.SelectHTMLAttributes<HTMLSelectElement> &

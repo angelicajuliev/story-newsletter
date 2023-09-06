@@ -5,10 +5,6 @@
   flex-direction: column;
   gap: calc($margin / 2);
 
-  label {
-    text-transform: capitalize;
-  }
-
   select {
     background-color: #fff;
     border: 1px solid $border-secondary-color;

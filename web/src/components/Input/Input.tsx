@@ -56,7 +56,7 @@ const Input: FunctionComponent<InputProps> = (props) => {
       return (
         <div className={`Input ${fieldState}`}>
           <label>{props.label || props.name}</label>
-          <input {...field} />
+          <input {...field} {...props} />
         </div>
       )
   }

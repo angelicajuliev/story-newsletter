@@ -1,20 +1,18 @@
-import Button from "@components/Button/Button";
 import "./CreateNewsletter.scss";
-import Input from "@components/Input/Input";
-import InputRichEditor from "@components/InputRichEditor/InputRichEditor";
 import { FunctionComponent } from "react";
-import Select from "@components/Select/Select";
+import Input from "@components/Input/Input";
+import Button from "@components/Button/Button";
+import InputRichEditor from "@components/InputRichEditor/InputRichEditor";
+import SelectCategoryC from "@components/SelectCategory/SelectCategoryC";
 
 type CreateNewsletterProps = {
   control: any;
   handleSubmit: any;
-  categoryOptions: { label: string; value: string }[];
 };
 
 const CreateNewsletter: FunctionComponent<CreateNewsletterProps> = ({
   control,
   handleSubmit,
-  categoryOptions,
 }) => {
   return (
     <form className="CreateNewsletter" onSubmit={handleSubmit}>
@@ -30,11 +28,7 @@ const CreateNewsletter: FunctionComponent<CreateNewsletterProps> = ({
           control={control}
         />
 
-        <Select
-          name="category"
-          control={control}
-          options={categoryOptions}
-        />
+        <SelectCategoryC control={control} />
       </div>
 
       <InputRichEditor name="content" control={control} />

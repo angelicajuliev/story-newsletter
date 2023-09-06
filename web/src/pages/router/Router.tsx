@@ -7,6 +7,7 @@ import RecipientListC from '@pages/RecipientList/RecipientListC'
 import NewsLetterListC from '@pages/NewsLetterList/NewsLetterListC'
 import CreateNewsletterC from '@pages/CreateNewsletter/CreateNewsletterC'
 import Home from '@pages/Home/Home'
+import RecipientUnsubscribeC from '@pages/Unsubscribe/RecipientUnsubscribeC'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: '/recipients',
         element: <RecipientListC />,
+      },
+      {
+        path: '/recipients/unsubscribe',
+        element: <RecipientUnsubscribeC />,
       },
       {
         path: '/newsletters',

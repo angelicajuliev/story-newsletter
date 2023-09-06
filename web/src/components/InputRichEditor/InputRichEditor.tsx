@@ -26,7 +26,7 @@ const InputRichEditor: FunctionComponent<InputRichEditorProps> = (props) => {
           'insertdatetime media table paste code help wordcount',
         ],
         toolbar:
-          'undo redo | formatselect | ' +
+          'undo redo | formatselect | fontsize | ' +
           'bold italic backcolor | alignleft aligncenter ' +
           'alignright alignjustify | bullist numlist outdent indent | ' +
           'removeformat | help',
