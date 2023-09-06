@@ -19,19 +19,20 @@ const CreateNewsletter: FunctionComponent<CreateNewsletterProps> = ({
       <h1>Create a Newsletter</h1>
 
       <div className="inputs-header">
-        <Input name="title" control={control} />
+        <Input name="title" control={control} required />
 
         <Input
           name="scheduledAt"
           label="Scheduled date"
           type="date"
           control={control}
+          required
         />
 
         <SelectCategoryC name="category" control={control} />
       </div>
 
-      <InputRichEditor name="content" control={control} />
+      <InputRichEditor name="content" control={control} required />
 
       <Button variant="primary">Save</Button>
     </form>

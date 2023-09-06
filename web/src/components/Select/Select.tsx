@@ -8,7 +8,10 @@ export type SelectProps = {
   UseControllerProps<any>
 
 const Select = ({ label, options, ...props }: SelectProps) => {
-  const { field, fieldState } = useController(props)
+  const { field, fieldState } = useController({
+    ...props,
+    rules: { required: props.required },
+  })
 
   return (
     <div className={`Select ${fieldState}`}>

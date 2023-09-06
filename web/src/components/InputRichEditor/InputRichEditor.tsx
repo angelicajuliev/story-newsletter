@@ -4,11 +4,15 @@ import { UseControllerProps, useController } from "react-hook-form";
 
 type InputRichEditorProps = {
   name: string;
+  required?: boolean;
 } & UseControllerProps<any>;
 
 const InputRichEditor: FunctionComponent<InputRichEditorProps> = (props) => {
   const editorRef = useRef<any>(null);
-  const { field, fieldState } = useController(props);
+  const { field, fieldState } = useController({
+    ...props,
+    rules: { required: props.required },
+  });
 
   return (
     <>

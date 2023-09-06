@@ -13,8 +13,12 @@ type InputProps = {
 
 const Input: FunctionComponent<InputProps> = (props) => {
   const { type } = props;
-  const { field, fieldState } = useController(props);
   const inputRef = useRef<any>(null);
+  
+  const { field, fieldState } = useController({
+    ...props,
+    rules: { required: props.required },
+  });
 
   const handleButtonFileClick = () => {
     inputRef?.current?.click();

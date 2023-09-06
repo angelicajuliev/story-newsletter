@@ -10,6 +10,10 @@ class NewsletterAPI extends API {
   public create(newsletter: Newsletter): Promise<AxiosResponse<Newsletter>> {
     return this.http.post('/newsletters/', newsletter);
   }
+
+  public send(id: number): Promise<AxiosResponse<Newsletter>> {
+    return this.http.put(`/newsletters/${id}/send/`, {});
+  }
 }
 
 export default NewsletterAPI;

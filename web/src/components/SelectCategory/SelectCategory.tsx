@@ -15,6 +15,7 @@ const SelectCategory: FunctionComponent<SelectCategoryProps> = ({
     label="Category"
     control={control}
     options={categoryOptions}
+    required
     {...rest}
   />
 );
