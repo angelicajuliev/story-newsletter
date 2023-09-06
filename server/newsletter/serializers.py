@@ -22,3 +22,15 @@ class NewsletterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Newsletter
         fields = '__all__'
+
+class CreateNewsletterSerializer(serializers.ModelSerializer):
+    category = serializers.PrimaryKeyRelatedField(read_only=True, allow_null=True)
+
+    class Meta:
+        model = Newsletter
+        fields = ('title', 'content', 'category')
+
+class SendNewsletterSerializer(serializers.Serializer):
+    """
+    Serializer for sending a newsletter
+    """

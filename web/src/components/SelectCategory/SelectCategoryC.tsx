@@ -47,12 +47,13 @@ const SelectCategoryC: FunctionComponent<SelectCategoryProps> = (props) => {
 
   const buildCategoryOptions = () => {
     const categories = state.categories ?? [];
+    const emptyOption = { label: "   ---    ", value: "" };
     const options = categories.map((category) => ({
       label: category.name,
       value: category.id.toString(),
     }));
 
-    return [...options, ...(props.extraOptions ?? [])];
+    return [emptyOption, ...options, ...(props.extraOptions ?? [])];
   };
 
   return <SelectCategory categoryOptions={buildCategoryOptions()} {...props} />;

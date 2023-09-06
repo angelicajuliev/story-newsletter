@@ -24,7 +24,7 @@ class Newsletter(models.Model):
         max_length=10,
         choices=[
           ('draft', 'Draft'),
-          ('published', 'Published'),
+          ('sent', 'Sent'),
           ('scheduled', 'Scheduled'),
           ('archived', 'Archived'),
         ],

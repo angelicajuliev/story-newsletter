@@ -28,16 +28,16 @@ const changeKeysCase = (
 };
 
 export const changeResponseCase = (response: AxiosResponse) => {
-  if (response.data) {
+  if (response?.data) {
     return changeKeysCase(response.data, camelCase);
   }
-  return response.data;
+  return response?.data;
 };
 
 export const changeRequestCase = (request: AxiosRequestConfig) => {
-  if (request.params) {
-    return changeKeysCase(request.params, snakeCase);
+  if (request?.data) {
+    return changeKeysCase(request.data, snakeCase);
   }
 
-  return request.params;
+  return request?.data;
 };
