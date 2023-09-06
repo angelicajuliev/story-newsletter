@@ -3,3 +3,5 @@ djangorestframework
 django-cors-headers 
 python-dotenv
 pyjwt
+celery[redis]
+django-celery-beat

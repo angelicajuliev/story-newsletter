@@ -1,4 +1,5 @@
 from django.utils import timezone
+from newsletter import tasks
 from newsletter.utils import send_email
 from newsletter.models import Newsletter, Recipient
 
@@ -6,7 +7,7 @@ def send_newsletter(newsletter: Newsletter):
     recipient_list = Recipient.objects.filter(category_subscription__in=[newsletter.category])
     recipient_emails = [recipient.email for recipient in recipient_list]
 
-    send_email(recipient_emails, newsletter.title, newsletter.content, newsletter.attachment)
+    tasks.send_email.delay(recipient_emails, newsletter.title, newsletter.content, newsletter.attachment)
     newsletter.status = 'sent'
     newsletter.save()
 
@@ -15,10 +16,13 @@ def send_newsletter_by_id(newsletter_id):
     send_newsletter(newsletter)
 
 def send_scheduled_newsletters():
-    scheduled_newsletters = Newsletter.objects.filter(status='scheduled')
+    scheduled_newsletters = Newsletter.objects.select_for_update().filter(status='scheduled', scheduled_at__date__lte=timezone.now().date())
     for newsletter in scheduled_newsletters:
-        if newsletter.scheduled_at.date() == timezone.now().date():
-            send_newsletter(newsletter)
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.error(newsletter)
+
+        send_newsletter(newsletter)
 
 def unsubscribe_by_email(email):
     recipient = Recipient.objects.get(email=email)

@@ -2,6 +2,7 @@ import os
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 def send_email(recipient_list, subject, html_content, attachment = None):
     for recipient in recipient_list:
@@ -18,7 +19,7 @@ def send_email(recipient_list, subject, html_content, attachment = None):
         msg.to = [recipient]
         msg.send()
 
-def store_attachment_file(newsletter_id, file):
+def store_attachment_file(newsletter_id, file: InMemoryUploadedFile):
     file_path = f'newsletter/attachments/{newsletter_id}'
     import logging 
     logger = logging.getLogger(__name__)

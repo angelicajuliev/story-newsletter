@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import FileUploadParser
 from newsletter.models import Recipient, Newsletter, Category
 from newsletter.serializers import RecipientSerializer, NewsletterSerializer, CategorySerializer, CreateRecipientSerializer, SendNewsletterSerializer, CreateNewsletterSerializer, UnsubscribeSerializer
-from newsletter.service import send_newsletter_by_id, unsubscribe_by_email_and_category, unsubscribe_by_email
+from newsletter.services import send_newsletter_by_id, unsubscribe_by_email_and_category, unsubscribe_by_email
 from newsletter.utils import store_attachment_file
 
 
@@ -69,5 +69,5 @@ class NewsletterAttachmentView(views.APIView):
         newsletter = Newsletter.objects.get(pk=id)
         newsletter.attachment = attachment
         newsletter.save()
-        
+
         return Response(status=204)

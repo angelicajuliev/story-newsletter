@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +140,7 @@ EMAIL_USE_TLS=os.environ.get('EMAIL_USE_TLS')
 EMAIL_PORT=os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'content-disposition',
