@@ -17,6 +17,29 @@
     cursor: not-allowed;
   }
 
+  &.input {
+    border: 1px solid $border-secondary-color;
+    border-radius: $border-radius;
+    padding: calc($padding / 2);
+    width: 100%;
+    background-color: #fff;
+    color: $text-primary-color;
+    font-size: $label-font-size;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+
+    p {
+      padding: 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: calc(90% - 1rem);
+    }
+  }
+
   &.icon,
   &.link-icon {
     background-color: $bg-primary-color;

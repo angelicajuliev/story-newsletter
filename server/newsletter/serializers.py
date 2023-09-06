@@ -30,7 +30,7 @@ class NewsletterSerializer(serializers.ModelSerializer):
 class CreateNewsletterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Newsletter
-        fields = ('title', 'content', 'category', 'scheduled_at')
+        fields = ('id', 'title', 'content', 'category', 'scheduled_at')
 
 class SendNewsletterSerializer(serializers.Serializer):
     """

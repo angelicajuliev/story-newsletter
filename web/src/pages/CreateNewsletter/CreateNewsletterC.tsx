@@ -17,32 +17,37 @@ const CreateNewsletterC = () => {
       scheduledAt: today,
       title: "",
       category: "",
+      attachment: ""
     },
   });
 
   const onSubmit = async (data: NewsLetterForm) => {
-    data.scheduledAt = new Date(data.scheduledAt).toISOString();
+    const senderData = {
+      title: data.title,
+      content: data.content,
+      category: data.category,
+      scheduledAt: new Date(data.scheduledAt).toISOString(),
+    };
 
     try {
-      await newsletterApi.create(data);
-  
-      dispatch({
-        type: CREATE_NEWSLETTER_SUCCESS,
-        payload: { ...data, status: "scheduled" },
-      });
-  
+      const response = await newsletterApi.create(senderData);
+      const newsletter = response?.data;
+
+      dispatch({ type: CREATE_NEWSLETTER_SUCCESS });
+
+      if (newsletter?.id && typeof data.attachment !== "string") {
+        await newsletterApi.uploadFile(newsletter.id, data.attachment);
+      }
+
       reset();
       navigate("/newsletters");
     } catch (error) {
-      setError("content", { message: "Error creating the newsletter" })
+      setError("content", { message: "Error creating the newsletter" });
     }
   };
 
   return (
-    <CreateNewsletter
-      control={control}
-      handleSubmit={handleSubmit(onSubmit)}
-    />
+    <CreateNewsletter control={control} handleSubmit={handleSubmit(onSubmit)} />
   );
 };
 
@@ -51,6 +56,7 @@ type NewsLetterForm = {
   scheduledAt: string;
   content: string;
   category: string;
+  attachment: string | File;
 };
 
 export default CreateNewsletterC;

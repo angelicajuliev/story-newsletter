@@ -3,7 +3,7 @@ import RecipientAPI from "./RecipientAPI";
 import NewsletterAPI from "./NewsletterAPI";
 import { CategoryAPI } from "./CategoryAPI";
 
-const API_URL =  'http://localhost:8000'
+export const API_URL =  'http://localhost:8000'
 
 const instance = axios.create({
   baseURL: API_URL,

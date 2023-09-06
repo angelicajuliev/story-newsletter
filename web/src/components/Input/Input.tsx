@@ -1,20 +1,21 @@
 import "./Input.scss";
 import { FunctionComponent, useRef } from "react";
 import { UseControllerProps, useController } from "react-hook-form";
-import { MdOutlineFileUpload } from "react-icons/md";
+import { MdOutlineAttachEmail, MdOutlineFileUpload } from "react-icons/md";
 import DatePicker from "react-date-picker";
 import Button from "@components/Button/Button";
 
 type InputProps = {
   type?: "file" | "date" | "text";
   label?: string;
+  variant?: "icon" | "input";
 } & UseControllerProps<any> &
   React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input: FunctionComponent<InputProps> = (props) => {
   const { type } = props;
   const inputRef = useRef<any>(null);
-  
+
   const { field, fieldState } = useController({
     ...props,
     rules: { required: props.required },
@@ -26,16 +27,31 @@ const Input: FunctionComponent<InputProps> = (props) => {
 
   switch (type) {
     case "file":
+      const fileName = field.value?.name;
       return (
         <div className="Input">
-          <input {...field} type="file" ref={inputRef} />
+          {props.label && <label>{props.label}</label>}
+          <input
+            type="file"
+            ref={inputRef}
+            onChange={(e) => field.onChange(e.target.files?.[0])}
+          />
           <Button
-            variant="icon"
+            variant={props.variant || "input"}
             title={props.label || "Upload file"}
             onClick={handleButtonFileClick}
+            type="button"
           >
-            <MdOutlineFileUpload />
+            {props.variant === "icon" ? (
+              <MdOutlineFileUpload />
+            ) : (
+              <>
+                {fileName && <MdOutlineAttachEmail />}
+                <p>{fileName ?? "Choose your file"}</p>
+              </>
+            )}
           </Button>
+
           {fieldState?.error?.message && (
             <p className="error">{fieldState?.error?.message}</p>
           )}

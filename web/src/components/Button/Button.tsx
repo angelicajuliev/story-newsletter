@@ -3,7 +3,7 @@ import './Button.scss'
 import { FunctionComponent, PropsWithChildren } from 'react'
 
 type ButtonProps = {
-  variant?: 'primary' | 'secondary' | 'icon' | 'link-icon'
+  variant?: 'primary' | 'secondary' | 'icon' | 'link-icon' | 'input'
   title?: string
   to?: string
 } & PropsWithChildren &

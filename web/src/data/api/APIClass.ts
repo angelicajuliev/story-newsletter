@@ -11,18 +11,11 @@ export class API {
     this._setupHandleError();
   }
 
-  setToken = (tokenParam?: string) => {
-    this.http.interceptors.request.use(function (request) {
-      const token = localStorage.getItem(CONSTANTS.KEYS_STORAGE.SESSION_TOKEN);
-      request.headers.Authorization = `Bearer ${token ?? tokenParam}`;
-      return request;
-    });
-  };
-
   private _setupHttpInstance() {
     this.http.interceptors.request.use(function (request) {
       axios.defaults.headers["Content-Type"] = "application/json";
-      if (request?.data) {
+
+      if (request.headers["Content-Type"] === "application/json" && request?.data) {
         request.data = changeRequestCase(request);
       }
       return request;

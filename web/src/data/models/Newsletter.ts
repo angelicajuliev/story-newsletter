@@ -4,7 +4,7 @@ export interface Newsletter {
   id?: number;
   title: string;
   scheduledAt: string | Date;
-  body?: string;
+  content?: string;
   status?: string;
   category?: string | Category;
   categoryId?: number | string;

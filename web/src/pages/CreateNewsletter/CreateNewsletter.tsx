@@ -22,6 +22,13 @@ const CreateNewsletter: FunctionComponent<CreateNewsletterProps> = ({
         <Input name="title" control={control} required />
 
         <Input
+          name="attachment"
+          control={control}
+          type="file"
+          label="Attachment newsletter"
+        />
+
+        <Input
           name="scheduledAt"
           label="Scheduled date"
           type="date"

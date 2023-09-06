@@ -5,6 +5,8 @@ const changeKeysCase = (
   obj: any | any[],
   newCase: (value: string) => string
 ): any => {
+  if (!obj)  return obj;
+
   const newObj = {} as any;
 
   if (Array.isArray(obj)) {

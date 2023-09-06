@@ -6,7 +6,7 @@ def send_newsletter(newsletter: Newsletter):
     recipient_list = Recipient.objects.filter(category_subscription__in=[newsletter.category])
     recipient_emails = [recipient.email for recipient in recipient_list]
 
-    send_email(newsletter.title, newsletter.content, recipient_emails)
+    send_email(recipient_emails, newsletter.title, newsletter.content, newsletter.attachment)
     newsletter.status = 'sent'
     newsletter.save()
 
