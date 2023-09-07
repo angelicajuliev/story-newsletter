@@ -1,7 +1,11 @@
 # Stori newsletter project
-![alt text](newsletterform.png)
 
-This project is a newsletter sending app, created using:
+## Description
+This project is a newsletter sending app that allows admin user to send email with newletter to the subscribed recipients.
+
+![Project preview](newsletterform.png)
+
+## Technical description
 - In the frontend side:
     - React.js as the render library
     - Context for the state management
@@ -12,6 +16,8 @@ This project is a newsletter sending app, created using:
     - Redis as the message broker for async task
     - Celery as task queue
     - Celery beat for running periodical task 
+
+![Architecture Diagram](architecture-diagram.png)
 
 ## Run the project
 ## Option 1 - Dockerize recommended:
