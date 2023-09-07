@@ -20,13 +20,30 @@
 
     li {
       padding: $padding;
-      display: flex;
+      display: grid;
       justify-content: space-between;
       align-items: center;
+      grid-template-columns: 1fr 15rem 2rem;
 
       &:nth-child(odd) {
         background-color: $bg-primary-color;
         border-radius: 10px;
+      }
+
+      .categories {
+        max-width: 14.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: $margin;
+
+        .Button {
+          justify-self: center;
+        }
       }
     }
 

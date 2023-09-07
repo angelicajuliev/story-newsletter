@@ -69,20 +69,24 @@ const RecipientList: FunctionComponent<RecipientListProps> = ({
           <li key="newEmailForm">
             <form onSubmit={handleOnSubmitNewRecipient}>
               <Input name="email" control={control} />
-              
+
               <Button variant="primary">Save</Button>
             </form>
           </li>
         )}
 
         {!recipients.length ? (
-          <p className="empty">
-            There are no subscribed recipients yet.
-            </p>
+          <p className="empty">There are no subscribed recipients yet.</p>
         ) : (
           recipients?.map((recipient) => (
             <li key={recipient.id}>
               <span>{recipient.email}</span>
+
+              <span className="categories">
+                {recipient.categorySubscription
+                  ?.map((category) => category.name)
+                  .join(" | ")}
+              </span>
 
               <Button
                 variant="icon"

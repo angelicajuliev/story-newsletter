@@ -22,7 +22,7 @@
     li {
       padding: $padding;
       display: grid;
-      grid-template-columns: minmax(5rem, 1fr) 5rem 5rem 7rem 6rem;
+      grid-template-columns: minmax(5rem, 1fr) 1.5rem 5rem 5rem 7rem 4rem;
       align-items: center;
       gap: $padding;
 

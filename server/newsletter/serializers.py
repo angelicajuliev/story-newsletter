@@ -10,6 +10,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class RecipientSerializer(serializers.ModelSerializer):
+    category_subscription = CategorySerializer(many=True)
+
     class Meta:
         model = Recipient
         fields = "__all__"

@@ -8,4 +8,5 @@ export interface Newsletter {
   status?: string;
   category?: string | Category;
   categoryId?: number | string;
+  attachment?: string[];
 }

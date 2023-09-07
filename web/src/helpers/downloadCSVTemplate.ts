@@ -4,7 +4,7 @@ export default function downloadCSVTemplate() {
   const hiddenElement = document.createElement("a");
   hiddenElement.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
   hiddenElement.target = "_blank";
-  hiddenElement.download = "Emails templates.csv";
+  hiddenElement.download = "Template.csv";
   hiddenElement.click();
   hiddenElement.remove();
 }

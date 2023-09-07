@@ -4,8 +4,7 @@ from newsletter.models import Newsletter, Recipient
 
 def save_history_newsletter_sent(newsletter, recipient):
     HistoryNewsletterSent.objects.create(
-        newsletter_title=newsletter, 
-        recipient_email=recipient
+        newsletter_title=newsletter, recipient_email=recipient
     )
 
 

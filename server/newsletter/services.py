@@ -1,7 +1,7 @@
 from django.utils import timezone
 
 from newsletter import tasks
-from newsletter.models import Newsletter, Recipient
+from newsletter.models import Category, Newsletter, Recipient
 
 
 def send_newsletter(newsletter: Newsletter):
@@ -40,3 +40,21 @@ def unsubscribe_by_email_and_category(email, category_id):
     recipient = Recipient.objects.get(email=email)
     recipient.category_subscription.remove(category_id)
     recipient.save()
+
+
+def bulk_create_recipients(recipients: list[Recipient]):
+    categories_ids = Category.objects.values_list("id", flat=True)
+    result = Recipient.objects.bulk_create(recipients)
+    category_relations = []
+
+    for recipient in result:
+        category_relations.extend(
+            [
+                Recipient.category_subscription.through(
+                    recipient_id=recipient.id, category_id=category_id
+                )
+                for category_id in categories_ids
+            ]
+        )
+
+    Recipient.category_subscription.through.objects.bulk_create(category_relations)

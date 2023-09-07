@@ -1,7 +1,6 @@
 import "./NewsLetterList.scss";
 import { FunctionComponent } from "react";
-import { MdAdd, MdSend } from "react-icons/md";
-import { LuCalendarX2 } from "react-icons/lu";
+import { MdAdd, MdOutlineAttachEmail, MdSend } from "react-icons/md";
 import Button from "@components/Button/Button";
 import { Newsletter } from "@data/models/Newsletter";
 import { formatDate } from "@helpers/formatDate";
@@ -39,7 +38,8 @@ const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
       ) : (
         <ul className="list">
           <li className="list-header">
-            <b>title</b>
+            <b>Title</b>
+            <b></b>
             <b>Category</b>
             <b>Status</b>
             <b>Date</b>
@@ -53,6 +53,8 @@ const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
             return (
               <li key={newsletter.id ?? newsletter.title}>
                 <p className="title">{newsletter.title}</p>
+
+                {newsletter.attachment && <MdOutlineAttachEmail />}
 
                 <p className="category">{categoryName}</p>
 

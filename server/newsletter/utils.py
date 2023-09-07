@@ -1,6 +1,6 @@
 import os
-import jwt
 
+import jwt
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -11,7 +11,7 @@ def send_email(recipient_email, subject, html_content, attachment=None):
     text_content = strip_tags(html_content)
     msg = EmailMultiAlternatives(subject, text_content)
     encoded_email = jwt.encode({"email": recipient_email}, "secret", algorithm="HS256")
-    
+
     html = render_to_string(
         "email_template.html", {"content": html_content, "token": encoded_email}
     )

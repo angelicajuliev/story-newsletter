@@ -1,10 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from rest_framework import views, viewsets
+from rest_framework import filters, views, viewsets
 from rest_framework.decorators import action
 from rest_framework.parsers import FileUploadParser, MultiPartParser
 from rest_framework.response import Response
-from rest_framework import filters
 
 from newsletter.models import Category, Newsletter, Recipient
 from newsletter.serializers import (
@@ -17,6 +16,7 @@ from newsletter.serializers import (
     UnsubscribeSerializer,
 )
 from newsletter.services import (
+    bulk_create_recipients,
     send_newsletter_by_id,
     unsubscribe_by_email,
     unsubscribe_by_email_and_category,
@@ -79,7 +79,7 @@ class BulkRecipientView(views.APIView):
             except ValidationError:
                 pass
 
-        Recipient.objects.bulk_create(recipients)
+        bulk_create_recipients(recipients)
         return Response(status=204)
 
 
@@ -87,7 +87,7 @@ class NewsletterViewSet(viewsets.ModelViewSet):
     queryset = Newsletter.objects.all()
     serializer_class = NewsletterSerializer
     filter_backends = [filters.OrderingFilter]
-    ordering_fields = ['created_at', 'scheduled_at']
+    ordering_fields = ["created_at", "scheduled_at"]
     ordering = ["-created_at"]
 
     def get_serializer_class(self):

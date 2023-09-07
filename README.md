@@ -9,8 +9,8 @@ This project is a newsletter sending app, created using:
 - In the backend side:
     - Django as the framework
     - SQLite as the database
-    - Redis as the broker for async task
-    - Celery for run async task
+    - Redis as the message broker for async task
+    - Celery as task queue
     - Celery beat for running periodical task 
 
 ## Run the project
@@ -80,15 +80,29 @@ Go to `http://localhost:3000/` and navigate through the options
     pip install -r requirements/dev.txt
     ```
 
-    2.2 Run Redis/celery/celery beat
-
-    2.3 Create the database schema and table, run:
+    2.2 Create the database schema and table, run:
 
     ```sh
     python manage.py migrate
     ```
 
-    2.4 Run the server:
+    2.3 Run Redis
+    ```sh
+    docker run -d --name redis-stack-server -p 6379:6379 redis
+    ```
+
+    2.4 Run celery
+    ```sh
+    celery -A server worker -l INFO
+    ```
+    
+    2.5 Run celery beat for the periodical task
+
+    ```sh
+    celery -A server beat -l INFO
+    ```
+
+    2.6 Run the server:
     
     Go to the `server` folder and run the following command:
     ```sh

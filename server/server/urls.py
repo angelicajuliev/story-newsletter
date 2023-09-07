@@ -1,11 +1,7 @@
 from django.urls import include, path, re_path
 from rest_framework import routers
 
-from metrics.views import (
-  DashboardView,
-  HealthCheckView,
-)
-
+from metrics.views import DashboardView, HealthCheckView
 from newsletter.views import (
     BulkRecipientView,
     CategoryViewSet,
