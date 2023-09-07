@@ -51,10 +51,13 @@ class RecipientViewSet(viewsets.ModelViewSet):
         email = serializer.validated_data["email"]
         category = serializer.validated_data.get("category")
 
-        if category:
-            unsubscribe_by_email_and_category(email, category)
-        else:
-            unsubscribe_by_email(email)
+        try:
+            if category:
+                unsubscribe_by_email_and_category(email, category)
+            else:
+                unsubscribe_by_email(email)
+        except Recipient.DoesNotExist:
+            return Response(status=404)
 
         return Response(status=200)
 

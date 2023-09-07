@@ -11,6 +11,10 @@
     text-transform: capitalize;
   }
 
+  p.error {
+    padding-top: 0;
+  }
+
   & > input,
   .react-date-picker__wrapper {
     border: 1px solid $border-secondary-color;
