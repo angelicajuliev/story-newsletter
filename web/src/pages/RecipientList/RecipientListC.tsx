@@ -2,12 +2,14 @@ import "./RecipientList.scss";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { recipientApi } from "@data/api";
+import { Recipient } from "@data/models/Recipient";
+import downloadCSVTemplate from "@helpers/downloadCSVTemplate";
+import RecipientList from "./RecipientList";
+
 import {
   useRecipientDispatch,
   useRecipientState,
 } from "@data/state/RecipientContext";
-import RecipientList from "./RecipientList";
-import { Recipient } from "@data/models/Recipient";
 
 import {
   CREATE_RECIPIENT,
@@ -16,7 +18,6 @@ import {
   FETCH_RECIPIENTS_ERROR,
   FETCH_RECIPIENTS_SUCCESS,
 } from "@data/state/ActionConstants";
-import downloadCSVTemplate from "@helpers/downloadCSVTemplate";
 
 const RecipientListC = () => {
   const state = useRecipientState();
@@ -100,7 +101,7 @@ const RecipientListC = () => {
 
   return (
     <RecipientList
-      RecipientList={state.items}
+      RecipientList={state?.items}
       showNewEmailForm={showNewEmailForm}
       handleOnSubmitNewRecipient={handleSubmit(handleOnSubmitNewRecipient)}
       handleCreateNewRecipient={handleCreateNewRecipient}

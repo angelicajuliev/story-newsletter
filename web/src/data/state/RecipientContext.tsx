@@ -19,8 +19,8 @@ type RecipientContextType = {
   error?: string;
 };
 
-const RecipientContext = createContext<RecipientContextType>(initialState);
-const RecipientDispatchContext = createContext<(values: any) => void>(() => {});
+export const RecipientContext = createContext<RecipientContextType>(initialState);
+export const RecipientDispatchContext = createContext<(values: any) => void>(() => {});
 
 const recipientReducer = (state: any, action: any) => {
   switch (action.type) {
