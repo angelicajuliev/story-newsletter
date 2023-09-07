@@ -32,55 +32,61 @@ const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
         </div>
       </section>
 
-      <ul className="list">
-        <li className="list-header">
-          <b>title</b>
-          <b>Category</b>
-          <b>Status</b>
-          <b>Date</b>
-          <b>Actions</b>
-        </li>
+      {!newsletters.length ? (
+        <p className="empty">
+          There are no newsletters to send yet. Create one!
+        </p>
+      ) : (
+        <ul className="list">
+          <li className="list-header">
+            <b>title</b>
+            <b>Category</b>
+            <b>Status</b>
+            <b>Date</b>
+            <b>Actions</b>
+          </li>
 
-        {newsletters.map((newsletter) => {
-          const categoryName =
-            (newsletter.category as any)?.name ?? newsletter.category;
+          {newsletters.map((newsletter) => {
+            const categoryName =
+              (newsletter.category as any)?.name ?? newsletter.category;
 
-          return (
-            <li key={newsletter.id ?? newsletter.title}>
-              <p className="title">{newsletter.title}</p>
+            return (
+              <li key={newsletter.id ?? newsletter.title}>
+                <p className="title">{newsletter.title}</p>
 
-              <p className="category">{categoryName}</p>
+                <p className="category">{categoryName}</p>
 
-              <p className="status">{newsletter.status}</p>
+                <p className="status">{newsletter.status}</p>
 
-              <p>
-                {newsletter.status !== "archived"
-                  ? formatDate(newsletter.scheduledAt)
-                  : " - "}
-              </p>
+                <p>
+                  {newsletter.status !== "archived"
+                    ? formatDate(newsletter.scheduledAt)
+                    : " - "}
+                </p>
 
-              <div className="actions">
-                {newsletter.status === "scheduled" && (
-                  <>
-                    <Button
-                      variant="icon"
-                      title="Send the email now"
-                      onClick={() => handleSendNewsletter(newsletter.id)}
-                      disabled={sendingEmail}
-                    >
-                      <MdSend />
-                    </Button>
+                <div className="actions">
+                  {newsletter.status === "scheduled" && (
+                    <>
+                      <Button
+                        variant="icon"
+                        title="Send the email now"
+                        onClick={() => handleSendNewsletter(newsletter.id)}
+                        disabled={sendingEmail}
+                      >
+                        <MdSend />
+                      </Button>
 
-                    <Button variant="icon" title="Cancel the scheduled email">
-                      <LuCalendarX2 />
-                    </Button>
-                  </>
-                )}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+                      <Button variant="icon" title="Cancel the scheduled email">
+                        <LuCalendarX2 />
+                      </Button>
+                    </>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };

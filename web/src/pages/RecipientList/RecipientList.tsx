@@ -1,17 +1,17 @@
 import "./RecipientList.scss";
 import { FunctionComponent } from "react";
+import { Recipient } from "@data/models/Recipient";
+import Button from "@components/Button/Button";
+import Input from "@components/Input/Input";
+
 import {
   MdAdd,
   MdOutlineDeleteOutline,
   MdOutlineFileDownload,
 } from "react-icons/md";
 
-import Button from "@components/Button/Button";
-import { Recipient } from "@data/models/Recipient";
-import Input from "@components/Input/Input";
-
 type RecipientListProps = {
-  RecipientList?: Recipient[];
+  recipients?: Recipient[];
   showNewEmailForm: boolean;
   handleOnSubmitNewRecipient: () => void;
   handleCreateNewRecipient: () => void;
@@ -21,7 +21,7 @@ type RecipientListProps = {
   control: any;
 };
 const RecipientList: FunctionComponent<RecipientListProps> = ({
-  RecipientList,
+  recipients = [],
   showNewEmailForm,
   handleOnSubmitNewRecipient,
   handleCreateNewRecipient,
@@ -69,24 +69,32 @@ const RecipientList: FunctionComponent<RecipientListProps> = ({
           <li key="newEmailForm">
             <form onSubmit={handleOnSubmitNewRecipient}>
               <Input name="email" control={control} />
+              
               <Button variant="primary">Save</Button>
             </form>
           </li>
         )}
 
-        {RecipientList?.map((recipient) => (
-          <li key={recipient.id}>
-            <span>{recipient.email}</span>
+        {!recipients.length ? (
+          <p className="empty">
+            There are no subscribed recipients yet.
+            </p>
+        ) : (
+          recipients?.map((recipient) => (
+            <li key={recipient.id}>
+              <span>{recipient.email}</span>
 
-            <Button
-              variant="icon"
-              title="Unsubscribe the recipient email"
-              onClick={() => handleUnsubscribeRecipient(recipient)}
-            >
-              <MdOutlineDeleteOutline />
-            </Button>
-          </li>
-        ))}
+              <Button
+                variant="icon"
+                title="Unsubscribe the recipient email"
+                onClick={() => handleUnsubscribeRecipient(recipient)}
+              >
+                <MdOutlineDeleteOutline />
+              </Button>
+            </li>
+          ))
+        )}
+        {}
       </ul>
     </div>
   );

@@ -102,3 +102,8 @@ p.error {
   color: $text-error-color;
   text-align: center;
 }
+
+p.empty {
+  text-align: center;
+  font-size: $h6-font-size;
+}

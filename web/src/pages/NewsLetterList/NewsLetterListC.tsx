@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { newsletterApi } from "@data/api";
 import NewsLetterList from "./NewsLetterList";
+
 import {
   useNewsletterDispatch,
   useNewsletterState,
 } from "@data/state/NewsletterContext";
-import { newsletterApi } from "@data/api";
+
 import {
   FETCH_NEWSLETTERS,
   FETCH_NEWSLETTERS_ERROR,
@@ -15,6 +17,10 @@ const NewsLetterListC = () => {
   const state = useNewsletterState();
   const dispatch = useNewsletterDispatch();
   const [sendingEmail, setSendingEmail] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     dispatch({ type: FETCH_NEWSLETTERS });
@@ -34,10 +40,6 @@ const NewsLetterListC = () => {
       });
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, [dispatch]);
 
   const handleSendNewsletter = async (newsletterId?: number) => {
     if (!newsletterId) return;

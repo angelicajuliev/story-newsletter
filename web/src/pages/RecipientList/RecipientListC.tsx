@@ -101,7 +101,7 @@ const RecipientListC = () => {
 
   return (
     <RecipientList
-      RecipientList={state?.items}
+      recipients={state?.items}
       showNewEmailForm={showNewEmailForm}
       handleOnSubmitNewRecipient={handleSubmit(handleOnSubmitNewRecipient)}
       handleCreateNewRecipient={handleCreateNewRecipient}
