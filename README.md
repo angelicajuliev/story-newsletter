@@ -1,5 +1,9 @@
 # Stori newsletter project
 
+- [Project description](#description)
+- [Technical description](#technical-description)
+- [Setup](#setup)
+
 ## Description
 This project is a newsletter sending app that allows admin user to send email with newletter to the subscribed recipients.
 
