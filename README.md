@@ -20,7 +20,11 @@ This project is a newsletter sending app, created using:
 
 ### Setup
 1. Setup your env variables:
-    Create a `.env.` file in the `server` folder following the structure:
+    Create a `.env` file in the `server` folder following the structure:
+    ```sh
+        cd server
+    ```
+
     ```
       EMAIL_HOST = 'smtp.gmail.com'
       EMAIL_USE_TLS = True
@@ -31,10 +35,11 @@ This project is a newsletter sending app, created using:
 
 2. Run the docker images running the following command:
     ```sh 
-    docker compose up 
+        docker compose up -d
     ```
 
 3. Enjoy the project
+
 Go to `http://localhost:3000/` and navigate through the options
 
 
@@ -46,13 +51,17 @@ Go to `http://localhost:3000/` and navigate through the options
 
 ### Setup
 1. Setup your env variables:
-    Create a `.env.` file in the `web` folder following the structure:
+    Create a `.env` file in the `web` folder following the structure:
+    ```sh
+        cd web
+    ```
+
     ```
       REACT_APP_API_URL=http://localhost:8000
       REACT_APP_TINY_MCE_API_KEY=API_KEY_HERE
     ```
 
-    Create a `.env.` file in the `server` folder following the structure:
+    Create a `.env` file in the `server` folder following the structure:
     ```
       EMAIL_HOST = 'smtp.gmail.com'
       EMAIL_USE_TLS = True
