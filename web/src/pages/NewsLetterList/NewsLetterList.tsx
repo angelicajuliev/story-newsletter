@@ -75,10 +75,6 @@ const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
                       >
                         <MdSend />
                       </Button>
-
-                      <Button variant="icon" title="Cancel the scheduled email">
-                        <LuCalendarX2 />
-                      </Button>
                     </>
                   )}
                 </div>
