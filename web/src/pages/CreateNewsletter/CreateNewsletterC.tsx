@@ -1,20 +1,19 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import CreateNewsletter from "./CreateNewsletter";
-import { getTomorrowDate } from "@helpers/getTomorrowDate";
 import { newsletterApi } from "@data/api";
 import { useNewsletterDispatch } from "@data/state/NewsletterContext";
 import { CREATE_NEWSLETTER_SUCCESS } from "@data/state/ActionConstants";
 
 const CreateNewsletterC = () => {
-  const tomorrow = getTomorrowDate();
+  const today = new Date();
   const navigate = useNavigate();
   const dispatch = useNewsletterDispatch();
 
   const { handleSubmit, control, reset, setError } = useForm<NewsLetterForm>({
     mode: "onChange",
     defaultValues: {
-      scheduledAt: tomorrow,
+      scheduledAt: today,
       title: "",
       category: "",
       attachment: ""

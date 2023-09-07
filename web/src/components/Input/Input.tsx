@@ -75,7 +75,7 @@ const Input: FunctionComponent<InputProps> = (props) => {
             onChange={field.onChange}
             value={(field.value as string) ?? ""}
             format="yyyy/MM/dd"
-            minDate={new Date(getTomorrowDate())}
+            minDate={new Date()}
           />
           {fieldState?.error?.message && (
             <p className="error">{fieldState?.error?.message}</p>
