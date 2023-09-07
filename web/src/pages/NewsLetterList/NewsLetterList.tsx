@@ -54,7 +54,11 @@ const NewsLetterList: FunctionComponent<NewsLetterListProps> = ({
               <li key={newsletter.id ?? newsletter.title}>
                 <p className="title">{newsletter.title}</p>
 
-                {newsletter.attachment && <MdOutlineAttachEmail />}
+                {newsletter.attachment ? (
+                  <MdOutlineAttachEmail />
+                ) : (
+                  <span></span>
+                )}
 
                 <p className="category">{categoryName}</p>
 
