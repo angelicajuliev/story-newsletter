@@ -2,32 +2,35 @@
 
 from django.db import migrations
 
+
 def create_periodical_task(apps, schema_editor):
-    IntervalSchedule = apps.get_model('django_celery_beat', 'IntervalSchedule')
-    PeriodicTask = apps.get_model('django_celery_beat', 'PeriodicTask')
+    IntervalSchedule = apps.get_model("django_celery_beat", "IntervalSchedule")
+    PeriodicTask = apps.get_model("django_celery_beat", "PeriodicTask")
 
     schedule, _ = IntervalSchedule.objects.get_or_create(
         every=1,
-        period='minutes',
+        period="minutes",
     )
 
     PeriodicTask.objects.create(
         interval=schedule,
-        name='Send the scheduled newsletters',
-        task='newsletter.tasks.send_scheduled_newsletters',
+        name="Send the scheduled newsletters",
+        task="newsletter.tasks.send_scheduled_newsletters",
     )
 
-def reverse_create_periodical_task(apps, schema_editor):
-    PeriodicTask = apps.get_model('django_celery_beat', 'PeriodicTask')
-    PeriodicTask.objects.filter(name='Send the scheduled newsletters').delete()
 
-    IntervalSchedule = apps.get_model('django_celery_beat', 'IntervalSchedule')
-    IntervalSchedule.objects.filter(every=1, period='minutes').delete()
-    
+def reverse_create_periodical_task(apps, schema_editor):
+    PeriodicTask = apps.get_model("django_celery_beat", "PeriodicTask")
+    PeriodicTask.objects.filter(name="Send the scheduled newsletters").delete()
+
+    IntervalSchedule = apps.get_model("django_celery_beat", "IntervalSchedule")
+    IntervalSchedule.objects.filter(every=1, period="minutes").delete()
+
+
 class Migration(migrations.Migration):
     dependencies = [
-        ('newsletter', '0003_newsletter_attachment_alter_newsletter_status'),
-        ('django_celery_beat', '0018_improve_crontab_helptext'),
+        ("newsletter", "0003_newsletter_attachment_alter_newsletter_status"),
+        ("django_celery_beat", "0018_improve_crontab_helptext"),
     ]
 
     operations = [

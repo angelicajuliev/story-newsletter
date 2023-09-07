@@ -15,7 +15,7 @@ export class API {
     this.http.interceptors.request.use(function (request) {
       axios.defaults.headers["Content-Type"] = "application/json";
 
-      if (request.headers["Content-Type"] === "application/json" && request?.data) {
+      if (!request.headers["Content-Type"] && request?.data) {
         request.data = changeRequestCase(request);
       }
       return request;

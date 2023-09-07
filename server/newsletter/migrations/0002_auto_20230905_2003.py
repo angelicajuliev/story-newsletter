@@ -2,24 +2,30 @@
 
 from django.db import migrations
 
+
 def create_default_categories(apps, schema_editor):
-    Category = apps.get_model('newsletter', 'Category')
-    Category.objects.bulk_create([
-        Category(name='News'),
-        Category(name='Sports'),
-        Category(name='Technology'),
-    ])
+    Category = apps.get_model("newsletter", "Category")
+    Category.objects.bulk_create(
+        [
+            Category(name="News"),
+            Category(name="Sports"),
+            Category(name="Technology"),
+        ]
+    )
+
 
 def reverse_create_default_categories(apps, schema_editor):
-    Category = apps.get_model('newsletter', 'Category')
+    Category = apps.get_model("newsletter", "Category")
     Category.objects.all().delete()
 
-class Migration(migrations.Migration):
 
+class Migration(migrations.Migration):
     dependencies = [
-        ('newsletter', '0001_initial'),
+        ("newsletter", "0001_initial"),
     ]
 
     operations = [
-        migrations.RunPython(create_default_categories, reverse_create_default_categories),
+        migrations.RunPython(
+            create_default_categories, reverse_create_default_categories
+        ),
     ]

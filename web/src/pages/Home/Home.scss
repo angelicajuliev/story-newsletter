@@ -3,17 +3,24 @@
 .Home {
   section {
     display: grid;
-    gap: calc($margin * 2);
+    gap: calc($margin * 3);
     margin-top: calc($margin * 2);
     grid-template-columns: 1fr 1fr;
   }
 
   .card {
     text-align: center;
+    border: 1px solid $border-secondary-color;
+    border-radius: $border-radius;
+    padding: $padding;
   }
 
   h2 {
-    font-size: $h1-font-size;
+    font-size: 3rem;
     color: $bg-tertiary-color;
+  }
+
+  h6 {
+    font-size: $h3-font-size;
   }
 }

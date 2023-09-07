@@ -6,8 +6,8 @@ import ErrorPage from '@pages/ErrorPage/ErrorPage'
 import RecipientListC from '@pages/RecipientList/RecipientListC'
 import NewsLetterListC from '@pages/NewsLetterList/NewsLetterListC'
 import CreateNewsletterC from '@pages/CreateNewsletter/CreateNewsletterC'
-import Home from '@pages/Home/Home'
 import RecipientUnsubscribeC from '@pages/Unsubscribe/RecipientUnsubscribeC'
+import HomeC from '@pages/Home/HomeC'
 
 const router = createBrowserRouter([
   {
@@ -17,11 +17,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: <HomeC />,
       },
       {
         path: '/home',
-        element: <Home />,
+        element: <HomeC />,
       },
       {
         path: '/recipients',

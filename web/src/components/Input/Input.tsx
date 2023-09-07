@@ -4,6 +4,7 @@ import { UseControllerProps, useController } from "react-hook-form";
 import { MdOutlineAttachEmail, MdOutlineFileUpload } from "react-icons/md";
 import DatePicker from "react-date-picker";
 import Button from "@components/Button/Button";
+import { getTomorrowDate } from "@helpers/getTomorrowDate";
 
 type InputProps = {
   type?: "file" | "date" | "text";
@@ -14,7 +15,7 @@ type InputProps = {
   React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input: FunctionComponent<InputProps> = (props) => {
-  const { type, onChange } = props;
+  const { type, onChange, variant = 'input' } = props;
   const inputRef = useRef<any>(null);
 
   const { field, fieldState } = useController({
@@ -31,7 +32,7 @@ const Input: FunctionComponent<InputProps> = (props) => {
       const fileName = field.value?.name;
       return (
         <div className="Input">
-          {props.label && props.variant === 'input' && <label>{props.label}</label>}
+          {props.label && variant === 'input' && <label>{props.label}</label>}
           <input
             type="file"
             ref={inputRef}
@@ -41,12 +42,12 @@ const Input: FunctionComponent<InputProps> = (props) => {
             }}
           />
           <Button
-            variant={props.variant || "input"}
+            variant={variant}
             title={props.label || "Upload file"}
             onClick={handleButtonFileClick}
             type="button"
           >
-            {props.variant === "icon" ? (
+            {variant === "icon" ? (
               <MdOutlineFileUpload />
             ) : (
               <>
@@ -73,8 +74,8 @@ const Input: FunctionComponent<InputProps> = (props) => {
             yearAriaLabel="Year"
             onChange={field.onChange}
             value={(field.value as string) ?? ""}
-            format="dd/MM/yyyy"
-            minDate={new Date()}
+            format="yyyy/MM/dd"
+            minDate={new Date(getTomorrowDate())}
           />
           {fieldState?.error?.message && (
             <p className="error">{fieldState?.error?.message}</p>

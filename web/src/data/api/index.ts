@@ -2,6 +2,7 @@ import axios from "axios";
 import RecipientAPI from "./RecipientAPI";
 import NewsletterAPI from "./NewsletterAPI";
 import { CategoryAPI } from "./CategoryAPI";
+import { DashboardAPI } from "./DashboardAPI";
 
 export const API_URL =  'http://localhost:8000'
 
@@ -13,3 +14,4 @@ const instance = axios.create({
 export const recipientApi = new RecipientAPI(instance);
 export const newsletterApi = new NewsletterAPI(instance);
 export const categoryApi = new CategoryAPI(instance);
+export const dashboardApi = new DashboardAPI(instance);
