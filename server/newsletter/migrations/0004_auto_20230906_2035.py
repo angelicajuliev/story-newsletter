@@ -9,7 +9,7 @@ def create_periodical_task(apps, schema_editor):
 
     schedule, _ = IntervalSchedule.objects.get_or_create(
         every=1,
-        period="minutes",
+        period="days",
     )
 
     PeriodicTask.objects.create(
@@ -24,7 +24,7 @@ def reverse_create_periodical_task(apps, schema_editor):
     PeriodicTask.objects.filter(name="Send the scheduled newsletters").delete()
 
     IntervalSchedule = apps.get_model("django_celery_beat", "IntervalSchedule")
-    IntervalSchedule.objects.filter(every=1, period="minutes").delete()
+    IntervalSchedule.objects.filter(every=1, period="days").delete()
 
 
 class Migration(migrations.Migration):

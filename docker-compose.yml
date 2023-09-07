@@ -45,5 +45,5 @@ services:
     command: celery -A server beat -l INFO
     depends_on:
       - redis
-
+      - server
 

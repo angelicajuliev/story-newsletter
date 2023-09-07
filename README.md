@@ -22,7 +22,7 @@ This project is a newsletter sending app, created using:
 1. Setup your env variables:
     Create a `.env` file in the `server` folder following the structure:
     ```sh
-        cd server
+    cd server
     ```
 
     ```
@@ -35,7 +35,7 @@ This project is a newsletter sending app, created using:
 
 2. Run the docker images running the following command:
     ```sh 
-        docker compose up -d
+    docker compose up -d
     ```
 
 3. Enjoy the project
@@ -53,7 +53,7 @@ Go to `http://localhost:3000/` and navigate through the options
 1. Setup your env variables:
     Create a `.env` file in the `web` folder following the structure:
     ```sh
-        cd web
+    cd web
     ```
 
     ```
