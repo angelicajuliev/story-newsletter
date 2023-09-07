@@ -23,6 +23,12 @@ services:
     command: /bin/sh -c "python manage.py migrate && python manage.py runserver 0:8000"
     volumes:
       - ./server:/server
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/healthcheck/"]
+      start_period: 30s
+      interval: 30s
+      timeout: 10s
+      retries: 5
   redis:
     image: redis
     ports:
@@ -44,6 +50,8 @@ services:
       - ./server:/server
     command: celery -A server beat -l INFO
     depends_on:
-      - redis
-      - server
+      redis:
+        condition: service_started
+      server:
+        condition: service_healthy
 

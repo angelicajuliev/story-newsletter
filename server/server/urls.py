@@ -1,7 +1,11 @@
 from django.urls import include, path, re_path
 from rest_framework import routers
 
-from metrics.views import DashboardView
+from metrics.views import (
+  DashboardView,
+  HealthCheckView,
+)
+
 from newsletter.views import (
     BulkRecipientView,
     CategoryViewSet,
@@ -21,6 +25,7 @@ urlpatterns = [
         r"^newsletters/(?P<id>[0-9]+)/upload/(?P<filename>[^/]+)/$",
         NewsletterAttachmentView.as_view(),
     ),
-    path("dashboard", DashboardView.as_view()),
+    path("dashboard/", DashboardView.as_view()),
+    path("healthcheck/", HealthCheckView.as_view()),
     path("", include(router.urls)),
 ]

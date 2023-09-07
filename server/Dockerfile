@@ -1,4 +1,6 @@
 FROM python:3.11-alpine
+RUN apk --no-cache add curl
+
 WORKDIR /server
 COPY requirements/ /server
 RUN pip install -r dev.txt

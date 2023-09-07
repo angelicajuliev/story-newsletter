@@ -10,3 +10,7 @@ class DashboardView(views.APIView):
         serializer = DashboardSerializer(data=get_dashboard_data())
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data, status=200)
+
+class HealthCheckView(views.APIView):
+    def get(self, request):
+        return Response(status=200)
