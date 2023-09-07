@@ -36,10 +36,8 @@ const recipientReducer = (state: any, action: any) => {
         loading: false,
       };
     case CREATE_RECIPIENT_SUCCESS:
-      const previousItems = state.items ?? [];
       return {
         ...state,
-        items: [...previousItems, action.payload],
         loading: false,
       };
     case FETCH_RECIPIENTS_ERROR:

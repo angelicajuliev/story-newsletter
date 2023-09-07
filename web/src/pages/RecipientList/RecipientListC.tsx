@@ -67,6 +67,7 @@ const RecipientListC = () => {
         payload: recipient,
       });
 
+      fetchRecipients();
       setShowNewEmailForm(false);
       reset();
     } catch (error) {
