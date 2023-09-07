@@ -1,6 +1,8 @@
 from django.utils import timezone
+
 from newsletter import tasks
 from newsletter.models import Newsletter, Recipient
+
 
 def send_newsletter(newsletter: Newsletter):
     recipient_list = Recipient.objects.filter(
@@ -34,7 +36,7 @@ def unsubscribe_by_email(email):
     recipient.delete()
 
 
-def unsubscribe_by_email_and_category(email, category):
+def unsubscribe_by_email_and_category(email, category_id):
     recipient = Recipient.objects.get(email=email)
-    recipient.category_subscription.remove(category)
+    recipient.category_subscription.remove(category_id)
     recipient.save()

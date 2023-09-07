@@ -19,9 +19,8 @@ const InputRichEditor: FunctionComponent<InputRichEditorProps> = (props) => {
       <Editor
         onEditorChange={(e) => field.onChange(e)}
         value={(field.value as string) ?? ""}
-        // apiKey={process.env.REACT_APP_TINY_MCE_API_KEY}
-        apiKey="30t2v7bii9c1gspec4twqiyigi08ux6wgcfpzukg4rpiinzd"
-        onInit={(evt: any, editor: any) => (editorRef.current = editor)}
+        apiKey={process.env.REACT_APP_TINY_MCE_API_KEY}
+        onInit={(_: any, editor: any) => (editorRef.current = editor)}
         init={{
           height: 300,
           menubar: false,
@@ -36,7 +35,7 @@ const InputRichEditor: FunctionComponent<InputRichEditorProps> = (props) => {
             "alignright alignjustify | bullist numlist outdent indent | " +
             "removeformat | help",
           content_style:
-            "body { font-family:Rubik,Arial,sans-serif; font-size:14px }",
+            "body { font-family:Rubik,Arial,sans-serif; font-size:16px }",
         }}
       />
       {fieldState?.error?.message && (

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+
 class DashboardSerializer(serializers.Serializer):
     total_recipients = serializers.IntegerField()
     total_newsletters = serializers.IntegerField()

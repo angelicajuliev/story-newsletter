@@ -1,12 +1,13 @@
-from rest_framework import routers
 from django.urls import include, path, re_path
+from rest_framework import routers
+
 from metrics.views import DashboardView
 from newsletter.views import (
-    RecipientViewSet,
-    NewsletterViewSet,
+    BulkRecipientView,
     CategoryViewSet,
     NewsletterAttachmentView,
-    BulkRecipientView,
+    NewsletterViewSet,
+    RecipientViewSet,
 )
 
 router = routers.DefaultRouter()

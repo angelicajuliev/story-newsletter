@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from newsletter.models import Recipient, Newsletter, Category
+
+from newsletter.models import Category, Newsletter, Recipient
 
 
 class CategorySerializer(serializers.ModelSerializer):

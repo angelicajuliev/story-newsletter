@@ -1,7 +1,6 @@
-from server.celery import app
 from metrics import services as metrics_services
-from newsletter import services
-from newsletter import utils
+from newsletter import services, utils
+from server.celery import app
 
 
 @app.task

@@ -1,0 +1,6 @@
+-r common.txt
+-r test.txt
+
+black
+isort
+ruff

@@ -1,7 +1,9 @@
 from rest_framework import views
 from rest_framework.response import Response
+
 from metrics.serializers import DashboardSerializer
 from metrics.services import get_dashboard_data
+
 
 class DashboardView(views.APIView):
     def get(self, request):

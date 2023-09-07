@@ -1,23 +1,25 @@
-from rest_framework import viewsets, views
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework.parsers import FileUploadParser, MultiPartParser
-from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-from newsletter.models import Recipient, Newsletter, Category
+from django.core.validators import validate_email
+from rest_framework import views, viewsets
+from rest_framework.decorators import action
+from rest_framework.parsers import FileUploadParser, MultiPartParser
+from rest_framework.response import Response
+from rest_framework import filters
+
+from newsletter.models import Category, Newsletter, Recipient
 from newsletter.serializers import (
-    RecipientSerializer,
-    NewsletterSerializer,
     CategorySerializer,
-    CreateRecipientSerializer,
-    SendNewsletterSerializer,
     CreateNewsletterSerializer,
+    CreateRecipientSerializer,
+    NewsletterSerializer,
+    RecipientSerializer,
+    SendNewsletterSerializer,
     UnsubscribeSerializer,
 )
 from newsletter.services import (
     send_newsletter_by_id,
-    unsubscribe_by_email_and_category,
     unsubscribe_by_email,
+    unsubscribe_by_email_and_category,
 )
 from newsletter.utils import store_attachment_file
 
@@ -71,7 +73,7 @@ class BulkRecipientView(views.APIView):
                 validate_email(email)
                 recipient = Recipient(email=email)
                 recipients.append(recipient)
-            except ValidationError as e:
+            except ValidationError:
                 pass
 
         Recipient.objects.bulk_create(recipients)
@@ -81,6 +83,9 @@ class BulkRecipientView(views.APIView):
 class NewsletterViewSet(viewsets.ModelViewSet):
     queryset = Newsletter.objects.all()
     serializer_class = NewsletterSerializer
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['created_at', 'scheduled_at']
+    ordering = ["-created_at"]
 
     def get_serializer_class(self):
         if self.action == "send":
